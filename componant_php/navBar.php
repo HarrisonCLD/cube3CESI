@@ -9,10 +9,11 @@
 <body>
     <nav class="navbar">
         <ul class="nav-list">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Logistique</a></li>
+            <li><a href="#">Ressource Humaine</a></li>
+            <li><a href="#">Social</a></li>
+            <li><a href="#">Mon Espace Perso </a> </li>
         </ul>
     </nav>
 </body>
