@@ -8,8 +8,10 @@ body, ul, li {
     background-color: #333;
     color: #fff; 
     padding: 10px 0; 
-    display:flex-end; 
-    align-items:center;
+    display:inline-block; 
+    align-items: center;
+    vertical-align : middle;
+    width : 100%
 }
 
 
@@ -35,9 +37,13 @@ body, ul, li {
     text-decoration: underline;
 }
 
-.svg {
-    float: right;
+.logo {
+  float:left;
   height: 50px;
-  width: 50px;
-  
+ 
 }
+
+.search-picture {
+  float:right;
+}
+
