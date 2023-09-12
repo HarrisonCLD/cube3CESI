@@ -18,17 +18,13 @@
 
 <body>
 
-    <?php 
-    include ("../componant_php/navBar.php")
-    ?>
-
     <main>
 
         <!-- // LOGIN CONTAINER -->
 
         <?php
 
-        require_once('../backend/config.php');
+        require_once('backend/config.php');
 
         try {
             $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
@@ -51,16 +47,16 @@
                 if ($stmt->rowCount() >= 1) {
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     $motDePasseBDD = $row['motDePasse'];
-                    if ($motDePasseBDD === $motDePasse) {
-                        if($_SESSION === 'Admin') {
+                    if ($motDePasseBDD == $motDePasse) {
+                        if ($nomDeCompte == 'admin') {
                             header('Location: pages/dashBoardAdmin.php');
                             exit();
-                        } else ($_SESSION === 'utilisateur') {
+                        } else {
                             header('Location: pages/dashBoardUser.php');
                             exit();
                         }
                     } else {
-                        echo "Nom de compte incorrect ou mot de passe incorrect.";
+                        echo "Mot de passe incorrect.";
                     }
                 } else {
                     echo "Nom de compte incorrect ou mot de passe incorrect.";
@@ -79,11 +75,15 @@
                 <label for="nomDeCompte">Nom de compte :</label>
                 <input
                 type="text"
+                name="nomDeCompte"
                 placeholder="Nom de compte...">
             </div>
             <div class="password_container">
                 <label for="motDePasse">Mot de passe :</label>
-                <input type="password" placeholder="Mot de passe...">
+                <input
+                type="password"
+                name="motDePasse"
+                placeholder="Mot de passe...">
             </div>
             <button
             type="submit"
