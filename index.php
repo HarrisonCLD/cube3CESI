@@ -23,37 +23,37 @@
 
         <?php
 
-        require_once('../backend/config.php');
+        // require_once('../backend/config.php');
 
-        try {
-            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die('Erreur de connexion : ' . $e->getMessage());
-        }
+        // try {
+        //     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+        //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // } catch (PDOException $e) {
+        //     die('Erreur de connexion : ' . $e->getMessage());
+        // }
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            try {
-                $nomDeCompte = $_POST['nomDeCompte'];
-                $motDePasse = $_POST['motDePasse'];
+        // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        //     try {
+        //         $nomDeCompte = $_POST['nomDeCompte'];
+        //         $motDePasse = $_POST['motDePasse'];
 
-                $sql = "INSERT INTO utilisateur (numeroDeBadge, email, nom, prenom, photo, nomDeCompte, motDePasse) VALUES (:numeroDeBage, :email, :nom, :prenom, :photo, :nomDeCompte, :motDePasse)";
-                $stmt = $pdo->prepare($sql);
+        //         $sql = "INSERT INTO utilisateur (numeroDeBadge, email, nom, prenom, photo, nomDeCompte, motDePasse) VALUES (:numeroDeBage, :email, :nom, :prenom, :photo, :nomDeCompte, :motDePasse)";
+        //         $stmt = $pdo->prepare($sql);
 
-                $stmt->bindParam(':nomDeCompte', $nomDeCompte);
-                $stmt->bindParam(':motDePasse', $motDePasse);
+        //         $stmt->bindParam(':nomDeCompte', $nomDeCompte);
+        //         $stmt->bindParam(':motDePasse', $motDePasse);
 
-                $result = $stmt->execute();
+        //         $result = $stmt->execute();
 
-                // if ($result) {
-                //     echo 'Inscription réussie !';
-                // } else {
-                //     echo 'Erreur lors de l\'inscription.';
-                // }
-            } catch (PDOException $e) {
-                die('Erreur de requête : ' . $e->getMessage());
-            }
-        }
+        //         if ($result) {
+        //             echo 'Inscription réussie !';
+        //         } else {
+        //             echo 'Erreur lors de l\'inscription.';
+        //         }
+        //     } catch (PDOException $e) {
+        //         die('Erreur de requête : ' . $e->getMessage());
+        //     }
+        // }
 
 
         echo '<form class="registrer_container">
@@ -143,6 +143,7 @@
                 <input type="password" placeholder="Mot de passe...">
             </div>
             <button type="submit">Se connecter</button>
+            <a href="pages/dashBoardAdmin.php">DashBoardAdmin</a>
             <p>Vous souhaitez vous inscrire, <a class="link_switch_2" onClick="ToggleFormLog()">cliquez ici</a></p>
         </form>'
         ?>
