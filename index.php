@@ -17,6 +17,10 @@
 
 <body>
 
+    <?php 
+    include ("../componant_php/navBar.php")
+    ?>
+
     <main>
 
         <!-- // REGISTRER CONTAINER -->
