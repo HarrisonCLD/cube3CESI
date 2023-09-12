@@ -14,6 +14,10 @@
 <body>
 
     <?php
+    include '../componant_php/navBar.php';
+    ?>
+
+    <?php
     include '../componant_php/frontDashBoard.php';
     ?>
 
