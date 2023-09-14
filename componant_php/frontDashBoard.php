@@ -1,7 +1,7 @@
 <?php
  echo '<div class="top_dashboard">
- <div class="compte"><p>Information du compte</p>
-        <div class="infos">
+ <div class="compte"><p class="infos_compte">Information du compte</p>
+        <div class="description">
             <p>Nom du compte</p>
             <p>Numéro de téléphone</p>
             <p>E-mail :</p>
@@ -10,14 +10,14 @@
             <p>Pays</p>
         </div>
     </div>
-    <div class="agenda"><p>Agenda</p>
+    <div class="agenda"><p class="planning">Agenda</p>
         <div class="rdv">
-            <div><p>Demain</p></div>
-            <div><p>Après-demain</p></div>
-            <div><p>3ème jour</p></div>
+            <div class="demain"><p>Demain</p></div>
+            <div class="apres-demain"><p>Après-demain</p></div>
+            <div class="jour3"><p>3ème jour</p></div>
         </div>
     </div>
-    <div class="commentaire"><p>Derniers commentaires des clients</p>
+    <div class="commentaire"><p class="clients">Derniers commentaires des clients</p>
         <div class="derniers"><p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit,
             <br>sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
     </div>
