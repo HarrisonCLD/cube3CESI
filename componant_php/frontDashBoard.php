@@ -1,5 +1,6 @@
 <?php
- echo '<div class="top_dashboard">
+ echo '<main>
+ <div class="top_dashboard">
  <div class="compte"><p class="infos_compte"><b>Information du compte</b></p>
         <div class="description">
             <p>Nom du compte</p>
@@ -31,6 +32,5 @@
         <div class="graphique"><p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit,
             <br>sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
     </div>
-    </div>';
-
-?>
+    </div>
+    </main>';
