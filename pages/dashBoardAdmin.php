@@ -7,6 +7,7 @@
 
     <title>CRM CESI - Admin</title>
 
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/frontDashBoard.css">
 
 </head>
