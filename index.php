@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/loginForm.css">
+    <link rel="stylesheet" href="frontDashBoard.css">
 
 </head>
 
