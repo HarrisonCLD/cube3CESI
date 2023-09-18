@@ -1,8 +1,9 @@
 <?php
  echo '<main>
  <div class="dashBoard_admin">
- <div class="top_dashboard">
- <div class="compte"><h3>Information du compte</h3>
+  <div class="top_dashboard">
+    <div class="compte">
+       <h3>Information du compte</h3>
         <div class="description">
             <p>Nom du compte</p>
             <p>Numéro de téléphone</p>
@@ -32,6 +33,7 @@
     <div class="vente"><h3 class="dernieresVentes">Dernières ventes</h3>
         <div class="graphique"><p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit,
             <br>sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+    </div>
     </div>
     </div>
     </div>

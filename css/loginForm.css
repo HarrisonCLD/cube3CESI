@@ -12,11 +12,6 @@
     background-color: white;
 }
 
-main {
-    width: 100vw;
-    height: 100vh;
-}
-
 .username_container,
 .password_container {
     display: flex;

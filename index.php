@@ -90,7 +90,8 @@
             type="submit"
             name="SubmitFormLogin">Se connecter</button>
             <p>Vous souhaitez vous inscrire, <a class="link_switch_2" href="pages/registrerForm.php">cliquez ici</a></p>
-        </form>
+        <a href="pages/dashBoardUser.php">link dashboard user</a>
+            </form>
         </main>'
         ?>
     </main>
