@@ -1,0 +1,72 @@
+nav {
+    position: absolute;
+    width: 100vw;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    padding: 15px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.logo_container {
+    width: 130px;
+}
+
+.navList_container ul {
+    display: flex;
+}
+
+.navList_container ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.navList_container ul li::after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 0%;
+    margin-top: 3px;
+    background-color: black;
+    transition: width 300ms ease-in-out;
+}
+
+.navList_container ul li:hover::after {
+    width: 95%;
+}
+
+.right_nav_container {
+    display: flex;
+}
+
+.right_nav_container svg {
+    margin: 0px 5px;
+}
+
+.sunSVG {
+    display: none;
+    opacity: 0;
+    transition: opacity 400ms ease;
+}
+
+.moonSVG {
+    opacity: 1;
+    transition: opacity 400ms ease;
+}
+
+.active1SVG {
+    opacity: 1;
+}
+
+.active2SVG {
+    opacity: 0;
+}

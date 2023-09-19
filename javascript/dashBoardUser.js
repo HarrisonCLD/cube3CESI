@@ -1,7 +1,7 @@
 // SCALE EFFECT FULL SCREEN
 
 // Declaration de variables et mise en tableau des container pour une boucle
-const svgFullScreen = document.querySelectorAll('svg');
+const svgFullScreen = document.querySelectorAll('.content_planning svg');
 const containerUser = [
     document.querySelector('.annonce_container'),
     document.querySelector('.planning_container'),
