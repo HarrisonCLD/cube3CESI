@@ -2,23 +2,6 @@
 
 require_once('../backend/config.php');
 
-//Function jour de semaine de anglais a français
-function jourSemaineEnFrancais($jourAnglais)
-{
-    $jours = [
-        "Monday" => "lundi",
-        "Tuesday" => "mardi",
-        "Wednesday" => "mercredi",
-        "Thursday" => "jeudi",
-        "Friday" => "vendredi",
-        "Saturday" => "samedi",
-        "Sunday" => "dimanche"
-    ];
-
-    return $jours[$jourAnglais];
-}
-//
-
 try {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -28,10 +11,13 @@ try {
     $stmtAnnonces->execute();
     $annonces = $stmtAnnonces->fetchAll(PDO::FETCH_ASSOC);
 
-    $sqlHeures = "SELECT date, horaireDebut, horaireFin FROM horaires";
-    $stmtHeures  = $pdo->prepare($sqlHeures);
-    $stmtHeures->execute();
-    $dates = $stmtHeures->fetchAll(PDO::FETCH_ASSOC);
+    $sqlDateTime = "SELECT date FROM horaires";
+    $stmtDateTime  = $pdo->prepare($sqlDateTime);
+    $stmtDateTime->execute();
+
+    $datetime = $stmtDateTime->fetch();
+    $datetime_string = $stmtDateTime->fetchColumn();
+
 
     // HTML simple
     echo '<main>
@@ -50,6 +36,7 @@ try {
                 </div>
                 <div class="separation_bar"></div>
                 <div class="annonce_content">';
+
     foreach ($annonces as $rowAnnonces) {
         echo '<ul>';
         echo "<li><h4 class='title_small'>" . $rowAnnonces["titre"] . "</h4></li>";
@@ -58,6 +45,7 @@ try {
         echo "<li><p class='auteur_small'>" . $rowAnnonces["auteur"] . "</p></li>";
         echo '</ul>';
     }
+
     echo '</div>
             </div>
             <div class="planning_container">
@@ -76,8 +64,8 @@ try {
                 </div>
                 <div class="separation_bar"></div>
                 <div class="planning_content">
-                <table>
-                <tr>
+                 <table>
+             <tr>
         <th></th>';
 
     $timeZone = date_default_timezone_set('Europe/Paris');
@@ -86,22 +74,66 @@ try {
     $day = $todayExplode[0];
     $month = $todayExplode[1];
 
-    echo '<th>' . $day . ' / ' . $month . '</th>';
+    echo '<th>' . $day . '/' . $month . '</th>';
 
-    echo '</tr>
-    <tr>';
+    for ($i = 0; $i < 14; $i++) {
+        $day++;
+
+        if (($day > 31 && ($month == '01' || $month == '03' || $month == '05' || $month == '07' || $month == '08' || $month == '10' || $month == '12')) ||
+            ($day > 30 && ($month == '04' || $month == '06' || $month == '09' || $month == '11')) ||
+            ($day > 28 && $month == '02')
+        ) {
+            $day = 01;
+            $month++;
+            echo '<th>' . $day . '/' . $month . '</th>';
+        } else {
+            echo '<th>' . $day . '/' . $month . '</th>';
+        }
+    }
+
+    echo '</tr>';
+
     $heures = ['8h00', '9h00', '10h00', '11h00', '12h00', '13h00', '14h00', '15h00', '16h00', '17h00', '18h00', '19h00'];
-    foreach ($heures as $heure) {
 
-        echo '<td>' . $heure . '</td>';
-        for ($j = 0; $j <= 15; $j++) {
+    $datetime = new DateTime($datetime_string);
+    $heureTimeBDD = $datetime->format('H');
+    $datetimeBDD = $datetime->format('d');
+    $monthTimeBDD = $datetime->format('m');
+    $timeZone = date_default_timezone_set('Europe/Paris');
+    $dateToday = date('d');
+    $monthToday = date('m');
+
+    foreach ($heures as $heure) {
+        echo '<tr>';
+        echo '<td class="heure_container_planning">' . $heure . '</td>';
+
+        $heuresString = substr($heure, 0, 2);
+
+        if ($dateToday == $datetimeBDD && $monthToday == $monthTimeBDD && $heuresString == $heureTimeBDD) {
+            echo '<td class="occuped"></td>';
+        } else {
             echo '<td></td>';
         }
+
         echo '</tr>';
     }
 
 
-    echo '</table>
+    // for ($i = 0; $i < count($heures); $i++) {
+    //     echo '<tr>';
+    //     echo '<td class="heure_container_planning">' . $heures[$i] . '</td>';
+
+    //     $heuresString = substr($heures[$i], 0, 2);
+
+    //     if ($dateToday == $datetimeBDD && $monthToday == $monthTimeBDD && $heuresString == $heureTimeBDD) {
+    //         echo '<td class="occuped"></td>';
+    //     } else {
+    //         echo '<td></td>';
+    //     }
+    // }
+
+    echo '</tr>
+    </table>
     </div>
             </div>
         </div>

@@ -174,6 +174,10 @@ td {
     padding: 1px 5px;
 }
 
+.heure_container_planning {
+    text-align: end;
+}
+
 /* // CP CONTAINER */
 
 .cp_container {
@@ -239,4 +243,8 @@ td {
     width: 95%;
     margin-top: 2px;
     background-color: black;
+}
+
+.occuped {
+    background-color: red;
 }

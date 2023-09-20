@@ -38,13 +38,13 @@
                 $nomDeCompte = $_POST['nomDeCompte'];
                 $motDePasse = $_POST['motDePasse'];
 
-                $sql = 'SELECT nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = ?';
+                $sql = 'SELECT nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = :nomDeCompte';
                 $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(1, $nomDeCompte);
+                $stmt->bindParam(':nomDeCompte', $nomDeCompte, PDO::PARAM_STR);
                 $stmt->execute();
 
-                if ($stmt->rowCount() >= 1) {
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($stmt->execute()) {
+                    $row = $stmt->fetch();
                     $nomDeCompteBDD = $row['nomDeCompte'];
                     $motDePasseBDD = $row['motDePasse'];
                     $statutBDD = $row['statut'];
@@ -56,8 +56,8 @@
                             header('Location: pages/dashBoardUser.php');
                             exit();
                         }
-                    } else {
-                        echo "Mot de passe incorrect.";
+                    } else if ($motDePasseBDD != $motDePasse) {
+                        echo "<div class='alert_container'>Nom de compte incorrect ou mot de passe incorrect.</div>";
                     }
                 } else {
                     echo "<div class='alert_container'>Nom de compte incorrect ou mot de passe incorrect.</div>";
