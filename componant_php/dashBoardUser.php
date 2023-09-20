@@ -81,10 +81,12 @@ try {
         <th></th>';
 
     $timeZone = date_default_timezone_set('Europe/Paris');
-    $today = date('d-m-Y');
+    $today = date('d-m');
     $todayExplode = explode('-', $today);
+    $day = $todayExplode[0];
+    $month = $todayExplode[1];
 
-    echo $todayExplode;
+    echo '<th>' . $day . ' / ' . $month . '</th>';
 
     echo '</tr>
     <tr>';
