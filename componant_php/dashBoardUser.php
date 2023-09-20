@@ -80,41 +80,12 @@ try {
                 <tr>
         <th></th>';
 
-    $today = date('d.m');
-    $datePlus;
+    $timeZone = date_default_timezone_set('Europe/Paris');
+    $today = date('d-m-Y');
+    $todayExplode = explode('-', $today);
 
-    for ($i = 0; $i < 14; $i++) {
+    echo $todayExplode;
 
-        // if ($datePlus[1] === '01' && $datePlus[2] === '31' || $datePlus[1] === '03' && $datePlus[2] === '31' || $datePlus[1] === '05' && $datePlus[2] === '31' || $datePlus[1] === '07' && $datePlus[2] === '31' || $datePlus[1] === '08' && $datePlus[2] === '31' || $datePlus[1] === '10' && $datePlus[2] === '31' || $datePlus[1] === '12' && $datePlus[2] === '31') {
-        //     $datePlus[2] = '01';
-        //     $datePlus[1] = (int)$datePlus[1];
-        //     $datePlus[1] += 1;
-        //     $datePlus[1] = str_pad($datePlus[1], 2, '0', STR_PAD_LEFT);
-        // } else if ($datePlus[1] === '02' && $datePlus[2] === '28') {
-        //     $datePlus[2] = '01';
-        //     $datePlus[1] = (int)$datePlus[1];
-        //     $datePlus[1] += 1;
-        //     $datePlus[1] = str_pad($datePlus[1], 2, '0', STR_PAD_LEFT);
-        // } else if ($datePlus[1] === '04' && $datePlus[2] === '30' || $datePlus[1] === '06' && $datePlus[2] === '30' || $datePlus[1] === '09' && $datePlus[2] === '30' || $datePlus[1] === '11' && $datePlus[2] === '30') {
-        //     $datePlus[2] = '01';
-        //     $datePlus[1] = (int)$datePlus[1];
-        //     $datePlus[1] += 1;
-        //     $datePlus[1] = str_pad($datePlus[1], 2, '0', STR_PAD_LEFT);
-        // } else {
-        //     $datePlus[2] = (int)$datePlus[2];
-        //     $datePlus[2] += 1;
-        //     $datePlus[2] = str_pad($datePlus[2], 2, '0', STR_PAD_LEFT);
-        //     $datePlus[1] = (int)$datePlus[1];
-        //     $datePlus[1] += 1;
-        //     $datePlus[1] = str_pad($datePlus[1], 2, '0', STR_PAD_LEFT);
-        // }
-
-        echo '<th>' . $today . '</th>';
-
-        $dateExpl = explode('.', $today);
-        $dateExpl[1] += 1;
-        $datePlus[1] = str_pad($datePlus[1], 2, '0', STR_PAD_LEFT);
-    }
     echo '</tr>
     <tr>';
     $heures = ['8h00', '9h00', '10h00', '11h00', '12h00', '13h00', '14h00', '15h00', '16h00', '17h00', '18h00', '19h00'];

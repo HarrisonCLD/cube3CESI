@@ -9,8 +9,15 @@ nav {
     align-items: center;
     width: 90%;
     margin: auto;
+    margin-top: 10px;
     padding: 15px;
-    border-radius: 0px 0px 10px 10px;
+}
+
+nav .separation_bar {
+    width: 80%;
+    height: 0.5px;
+    margin: auto;
+    margin-top: 5px;
 }
 
 .logo_container {

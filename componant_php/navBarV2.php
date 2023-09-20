@@ -41,4 +41,5 @@ echo '<nav>
         </svg>
     </div>
     </div>
+    <div class="separation_bar"></div>
 </nav>';

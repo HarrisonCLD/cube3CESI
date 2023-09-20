@@ -39,14 +39,6 @@ li {
     list-style-type: none;
 }
 
-/* .dark_theme {
-    background-color: rgb(18, 18, 18);
-}
-
-.medium_theme {
-    background-color: rgba(18, 18, 18, 0.5);
-} */
-
 /* //OVERLAY DARK THEME CSS */
 
 .overlay_1 {
@@ -56,7 +48,7 @@ li {
     height: 100%;
     width: 100%;
     z-index: 1;
-    background-color: rgba(18, 18, 18, 0.9);
+    background-color: black;
 }
 
 .overlay_2 {
@@ -67,16 +59,43 @@ li {
     width: 100%;
     z-index: 3;
     border-radius: 10px;
-    background-color: rgba(18, 18, 18, 0.85);
+    background-color: rgb(22, 24, 28);
 }
 
-.overlay_3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 5;
-    border-radius: 10px;
-    background-color: rgba(18, 18, 18, 0.80);
+/* //Dark Theme CSS */
+
+.dark_theme_for_body {
+    position: relative;
+    z-index: 0;
+}
+
+.dark_theme_for_container {
+    position: relative;
+    z-index: 4;
+    border: 0.5px solid rgb(47, 51, 54);
+}
+
+.dark_theme_for_content {
+    color: #e8e8E8;
+    position: relative;
+    z-index: 6;
+}
+
+.dark_theme_for_separation {
+    background-color: #e8e8E8;
+    position: relative;
+    z-index: 6;
+}
+
+.dark_theme_for_annonce_ul_1 {
+    background-color: #e8e8E8;
+}
+
+.dark_theme_for_annonce_ul_2 {
+    border: #e8e8E8;
+    background-color: transparent;
+}
+
+.dark_theme_for_annonce_li {
+    color: black;
 }

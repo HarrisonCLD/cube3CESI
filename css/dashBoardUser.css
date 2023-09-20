@@ -5,8 +5,6 @@
     width: 90%;
     height: 80%;
     padding: 20px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
 }
 
@@ -65,12 +63,12 @@ svg {
     flex-direction: column;
     width: 48%;
     height: 100%;
-    padding: 20px 10px;
+    padding: 20px 15px;
     margin: 10px 0px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    background-color: white;
 }
+
 
 .separation_bar {
     width: 100%;
@@ -86,6 +84,7 @@ svg {
 .top_heure_content {
     display: flex;
     justify-content: space-between;
+    z-index: 10;
 }
 
 .annonce_content,
@@ -94,8 +93,8 @@ svg {
 .heure_content {
     height: 80%;
     padding: 5px;
-    border: 0.5px solid black;
     border-radius: 10px;
+    z-index: 10;
 }
 
 /* // ANNONCES CONTENT CSS */
@@ -108,7 +107,6 @@ svg {
 }
 
 .annonce_content ul:hover {
-    background-color: #f0f0f0;
     border: 0.5px solid black;
 }
 
@@ -137,7 +135,7 @@ svg {
     padding: 25px;
     z-index: 9998;
     background-color: white;
-    border: 1px solid black;
+    border-radius: 10px;
 }
 
 .closeButton {
@@ -208,6 +206,7 @@ td {
 }
 
 .cp_container button {
+    z-index: 10;
     height: 40px;
     width: 140px;
     margin-top: 10px;

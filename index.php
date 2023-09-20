@@ -38,16 +38,18 @@
                 $nomDeCompte = $_POST['nomDeCompte'];
                 $motDePasse = $_POST['motDePasse'];
 
-                $sql = 'SELECT * FROM utilisateur WHERE nomDeCompte = ?';
+                $sql = 'SELECT nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = ?';
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(1, $nomDeCompte);
                 $stmt->execute();
 
                 if ($stmt->rowCount() >= 1) {
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $nomDeCompteBDD = $row['nomDeCompte'];
                     $motDePasseBDD = $row['motDePasse'];
-                    if ($motDePasseBDD == $motDePasse) {
-                        if ($nomDeCompte == 'admin') {
+                    $statutBDD = $row['statut'];
+                    if ($nomDeCompteBDD == $nomDeCompte && $motDePasseBDD == $motDePasse) {
+                        if ($statutBDD == 'admin') {
                             header('Location: pages/dashBoardAdmin.php');
                             exit();
                         } else {
@@ -58,7 +60,7 @@
                         echo "Mot de passe incorrect.";
                     }
                 } else {
-                    echo "Nom de compte incorrect ou mot de passe incorrect.";
+                    echo "<div class='alert_container'>Nom de compte incorrect ou mot de passe incorrect.</div>";
                 }
             } catch (PDOException $e) {
                 die('Erreur de requête : ' . $e->getMessage());
@@ -88,7 +90,6 @@
             type="submit"
             name="SubmitFormLogin">Se connecter</button>
             <p>Vous souhaitez vous inscrire, <a class="link_switch_2" href="pages/registrerForm.php">cliquez ici</a></p>
-        <a href="pages/dashBoardUser.php">link dashboard user</a>
             </form>
         </main>'
         ?>
