@@ -15,7 +15,9 @@ try {
     $stmtDateTime  = $pdo->prepare($sqlDateTime);
     $stmtDateTime->execute();
 
-    $datetime_strings = $stmtDateTime->fetchAll(PDO::FETCH_COLUMN);
+    // $datetime_strings = $stmtDateTime->fetchAll(PDO::FETCH_COLUMN);
+    $datetime_strings = ["2023-09-22 12:19:19"];
+
 
     // HTML simple
     echo '<main>
@@ -132,7 +134,7 @@ try {
                     <h3>CONGÉS PAYÉS :</h3>
                 </div>
                 <div class="separation_bar"></div>
-                <div class="cp_content">
+                <div class="cp_content">   
     <div>
         <p>Début des CP :</p>
         <input type="date">
@@ -144,6 +146,7 @@ try {
 </div>
                 <button class="add_cp_but">Demande de CP</button>
             </div>
+
             <div class="heure_container">
                 <div class="top_heure_content">
                     <h3>HEURES :</h3>

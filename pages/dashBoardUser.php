@@ -1,3 +1,6 @@
+<!-- <?php
+        session_start();
+        ?> -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,11 +21,12 @@
 <body>
 
     <?php
-    include '../componant_php/navBarV2.php'
-    ?>
+    // if (!isset($_SESSION['user'])) {
+    //     header('Location: ../index.php');
+    // } else {
+    include '../componant_php/navBarV2.php';
+    include '../componant_php/dashBoardUser.php';
 
-    <?php
-    include '../componant_php/dashBoardUser.php'
     ?>
 
     <script src="../javascript/dashBoardUser.js"></script>
