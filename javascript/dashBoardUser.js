@@ -1,7 +1,7 @@
 // SCALE EFFECT FULL SCREEN
 
 // Declaration de variables et mise en tableau des container pour une boucle
-const svgFullScreen = document.querySelectorAll('svg');
+const svgFullScreen = document.querySelector('.top_content_planning svg');
 const containerUser = [
     document.querySelector('.annonce_container'),
     document.querySelector('.planning_container'),
@@ -9,11 +9,9 @@ const containerUser = [
     document.querySelector('.heure_container')
 ];
 
-for (let i = 0; i < svgFullScreen.length; i++) {
-    svgFullScreen[i].addEventListener('click', () => {
-        svgFullScreen[i].classList.toggle('active') // toggle class CSS
-    })
-}
+svgFullScreen.addEventListener('click', () => {
+    svgFullScreen.classList.toggle('active') // toggle class CSS
+})
 
 // BUTTON "DEMANDE CP" EFFECT
 

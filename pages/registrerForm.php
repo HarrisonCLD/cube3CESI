@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/registrerForm.css">
 
 </head>
 
@@ -38,27 +37,57 @@
             $prenom = $_POST['prenom'];
             $nomDeCompte = $_POST['nomDeCompte'];
             $motDePasse = $_POST['motDePasse'];
+            $motDePasse2 = $_POST['motDePasse2'];
 
-            $sql = "INSERT INTO utilisateur (numeroDeBadge, email, nom, prenom, nomDeCompte, motDePasse) VALUES (:numeroDeBadge, :email, :nom, :prenom, :nomDeCompte, :motDePasse)";
-            $stmt = $pdo->prepare($sql);
+            if (
+                isset($_POST['numeroDeBadge']) && isset($_POST['email']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['nomDeCompte']) && isset($_POST['motDePasse']) && isset(($_POST['motDePasse2']))
+            ) {
+                if (
+                    !empty($_POST['numeroDeBadge']) && !empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['nomDeCompte']) && !empty($_POST['motDePasse']) && !empty($_POST['motDePasse2'])
+                ) {
+                    $NumBadgeValid = htmlspecialchars($numeroDeBadge);
 
-            $stmt->bindParam(':numeroDeBadge', $numeroDeBadge);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':nom', $nom);
-            $stmt->bindParam(':prenom', $prenom);
-            $stmt->bindParam(':nomDeCompte', $nomDeCompte);
-            $stmt->bindParam(':motDePasse', $motDePasse);
+                    if ($NumBadgeValid < 6 && $NumBadgeValid > 6) {
+                        echo '<div class="alert_container">Numéro de badge invalide</div>';
+                    } else {
+                        $MdpUser1 = htmlspecialchars($motDePasse);
+                        $MdpUser2 = htmlspecialchars($motDePasse2);
 
-            $result = $stmt->execute();
+                        if ($MdpUser1 === $MdpUser2) {
 
-            if ($result) {
-                header('Location: ../index.php');
-                exit();
+                            $passwordHash = password_hash($MdpUser1, PASSWORD_BCRYPT);
+
+                            $sql = "INSERT INTO utilisateur (numeroDeBadge, email, nom, prenom, nomDeCompte, motDePasse) VALUES (:numeroDeBadge, :email, :nom, :prenom, :nomDeCompte, :motDePasse)";
+                            $stmt = $pdo->prepare($sql);
+
+                            $stmt->bindParam(':numeroDeBadge', $numeroDeBadge);
+                            $stmt->bindParam(':email', $email);
+                            $stmt->bindParam(':nom', $nom);
+                            $stmt->bindParam(':prenom', $prenom);
+                            $stmt->bindParam(':nomDeCompte', $nomDeCompte);
+                            $stmt->bindParam(':motDePasse', $passwordHash);
+
+                            $result = $stmt->execute();
+
+                            if ($result) {
+                                echo '<script>alert("Inscription réussie")</script>';
+                                header('Location: ../index.php');
+                                exit();
+                            } else {
+                                echo '<div class="alert_container">L\'inscription a échoué</div>';
+                            }
+                        } else {
+                            echo '<div class="alert_container">Vos mots de passe ne correspondent pas</div>';
+                        }
+                    }
+                } else {
+                    echo '<div class="alert_container">Veuillez renseigner tout les champs demander</div>';
+                }
             } else {
-                echo '<script>alert("Inscripton échoué !")</script>';
+                echo '<div class="alert_container">Veuillez renseigner tout les champs demander</div>';
             }
         } catch (PDOException $e) {
-            die('Erreur de requête : ' . $e->getMessage());
+            echo '<div class="alert_container">Erreur avec la base de donnée</div>';
         }
     }
 
@@ -119,6 +148,14 @@
                         placeholder="Mot de passe..."
                         required>
                     </div>
+                    <div class="password_container_2">
+                        <label for="motDePasse2">Mot de passe une 2ème fois:</label>
+                        <input
+                        type="password"
+                        name="motDePasse2"
+                        placeholder="Mot de passe..."
+                        required>
+                    </div>
                 </div>
             </div>
             <button 
@@ -130,6 +167,8 @@
         </main>
         '
     ?>
+
+    <script src="../javascript/navBar.js"></script>
 
 </body>
 

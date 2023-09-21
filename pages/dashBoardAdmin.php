@@ -12,20 +12,21 @@
     <title>CRM CESI - Admin</title>
 
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/navBar.css">
-    <link rel="stylesheet" href="../css/frontDashBoard.css">
 
 </head>
 
 <body>
 
     <?php
-    include '../componant_php/navBar.php';
+    include '../componant_php/navBarV2.php';
     ?>
 
     <?php
     include '../componant_php/frontDashBoard.php';
     ?>
+
+    <script src="../javascript/navBar.js"></script>
+
 
 </body>
 

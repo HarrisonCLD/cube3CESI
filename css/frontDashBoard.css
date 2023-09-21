@@ -1,4 +1,4 @@
-.dashBoard_admin{
+.dashBoard_admin {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -20,70 +20,76 @@ h3{
     background-color: black;
 }
 
-.top_dashboard{
+.top_dashboard {
     display: flex;
     justify-content: space-around;
 }
 
-.compte, .agenda, .commentaire{
+.top_dashboard div {
     width: 32%;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-
-.mail, .vente{
+.bottom_dashboard div {
     width: 48%;
 }
 
-.bottom_dashboard{
+.bottom_dashboard {
     display: flex;
     justify-content: space-around;
     margin-top: 15px;
 }
 .compte{
+    border: 2px black solid;
+    background-color: #FAF0E6;
     padding: 30px;
     border-radius: 30px;
 }
 
-.compte, .description{
+.compte,
+.description {
     display: block;
 }
 
-.infos_compte{
+.infos_compte {
     display: flex;
     justify-content: center;
     border-top-right-radius: 30px;
-    border-top-left-radius: 30px; 
+    border-top-left-radius: 30px;
 }
 
-.description{
+.description {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 
-.description p{
-    margin: 10px 0px; /* le 10 correspond au haut et bas et le 0 à gauche et droite*/
+.description p {
+    margin: 10px 0px;
+    /* le 10 correspond au haut et bas et le 0 à gauche et droite*/
 }
 
 .agenda{
+    background-color: #FAF0E6;
+    border: solid black 2px;
     border-radius: 30px;
     padding: 30px;
-   
+
 }
 
-.agenda, .rdv {
+.agenda,
+.rdv {
     display: block;
 }
 
-.planning{
+.planning {
     display: flex;
     justify-content: center;
 }
 
-.rdv{
+.rdv {
     display: flex;
     justify-content: space-around;
     margin: 0px 10px;
@@ -100,11 +106,14 @@ h3{
 
 
 .commentaire{
+    background-color: #FAF0E6;
+    border: black 2px solid;
     border-radius: 30px;
     padding: 30px;
 }
 
-.commentaire, .derniers {
+.commentaire,
+.derniers {
     display: block;
 }
 
@@ -113,7 +122,7 @@ h3{
     justify-content: center;
 } */
 
-.derniers{
+.derniers {
     display: flex;
     justify-content: flex-start;
 }
@@ -123,33 +132,36 @@ h3{
 }
 
 .mail{
+    background-color: #FAF0E6;
+    border: black 2px solid;
     border-radius: 30px;
     padding: 30px;
 }
 
-.mail, .boite{
+.mail,
+.boite {
     display: block;
 }
 
-.derniersMails{
+.derniersMails {
     display: flex;
     justify-content: center;
 }
 
-.vente, .graphique{
+.vente,
+.graphique {
     display: block;
 }
 
-.dernieresVentes{
+.dernieresVentes {
     display: flex;
     justify-content: center;
 }
 
 .vente{
+    background-color: #FAF0E6;
+    border: black 2px solid;
     border-radius: 30px;
     padding-bottom: 100px;
     padding: 30px;
 }
-
-
-

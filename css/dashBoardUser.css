@@ -1,14 +1,11 @@
 .dashBoard_user {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 90%;
+    height: 80%;
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
-}
-
-h3 {
-    color: blue;
 }
 
 svg {
@@ -55,6 +52,7 @@ svg {
 .bottom_dashBoard_user {
     display: flex;
     justify-content: space-around;
+    height: 48%;
 }
 
 .annonce_container,
@@ -64,12 +62,13 @@ svg {
     display: flex;
     flex-direction: column;
     width: 48%;
-    max-height: 48%;
-    padding: 20px 10px;
+    height: 100%;
+    padding: 20px 15px;
     margin: 10px 0px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+
 
 .separation_bar {
     width: 100%;
@@ -85,32 +84,17 @@ svg {
 .top_heure_content {
     display: flex;
     justify-content: space-between;
+    z-index: 10;
 }
 
 .annonce_content,
 .planning_content,
 .cp_content,
 .heure_content {
+    height: 80%;
     padding: 5px;
-    border: 0.5px solid black;
     border-radius: 10px;
-    /* overflow: scroll; */
-}
-
-.cp_container button {
-    position: relative;
-    right: 0px;
-    height: 30px;
-    margin-top: 10px;
-    border-radius: 10px;
-    color: white;
-    background-color: blue;
-    border: 1px solid blue;
-    cursor: pointer;
-}
-
-.heure_container {
-    height: fit-content;
+    z-index: 10;
 }
 
 /* // ANNONCES CONTENT CSS */
@@ -123,7 +107,6 @@ svg {
 }
 
 .annonce_content ul:hover {
-    background-color: #f0f0f0;
     border: 0.5px solid black;
 }
 
@@ -152,7 +135,7 @@ svg {
     padding: 25px;
     z-index: 9998;
     background-color: white;
-    border: 1px solid black;
+    border-radius: 10px;
 }
 
 .closeButton {
@@ -171,27 +154,97 @@ svg {
 
 /* Journée container */
 
-.planning_content {}
-
-.planning_content li {
-    list-style: none;
+.planning_content {
+    width: 100%;
+    overflow: auto;
 }
 
-.heure_planning_container {}
-
-.heure_planning_container ul {
-    display: flex;
-    flex-direction: column;
-}
-
-.jour_container {
-    display: flex;
-    overflow: scroll;
-}
-
-.jour_container li {
-    padding: 5px 15px;
+.planning_content table th {
     margin: 0px 5px;
 }
 
-.job_container {}
+.planning_content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 1px 5px;
+}
+
+.heure_container_planning {
+    text-align: end;
+}
+
+/* // CP CONTAINER */
+
+.cp_container {
+    align-items: center;
+}
+
+.top_content_cp {
+    width: 100%;
+}
+
+.cp_content {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.cp_content div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cp_content div input {
+    width: 120px;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 0.5px solid black;
+}
+
+.cp_container button {
+    z-index: 10;
+    height: 40px;
+    width: 140px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: blue;
+    border: 1px solid blue;
+    cursor: pointer;
+}
+
+/* // HEURE CONTAINER */
+
+.heure_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.compteur_container p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.compteur_container p::after,
+.cp_content div p::after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 95%;
+    margin-top: 2px;
+    background-color: black;
+}
+
+.occuped {
+    background-color: red;
+}

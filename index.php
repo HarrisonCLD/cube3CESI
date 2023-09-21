@@ -12,8 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/loginForm.css">
-    <link rel="stylesheet" href="frontDashBoard.css">
 
 </head>
 
@@ -37,37 +35,39 @@
 
         if (isset($_POST['SubmitFormLogin'])) {
             try {
-                $nomDeCompte = $_POST['nomDeCompte'];
-                $motDePasse = $_POST['motDePasse'];
+                $nomDeCompte = htmlspecialchars($_POST['nomDeCompte']);
+                $motDePasse = htmlspecialchars($_POST['motDePasse']);
 
-                $sql = 'SELECT * FROM utilisateur WHERE nomDeCompte = ?';
+                $sql = 'SELECT nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = :nomDeCompte';
                 $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(1, $nomDeCompte);
+                $stmt->bindParam(':nomDeCompte', $nomDeCompte, PDO::PARAM_STR);
                 $stmt->execute();
 
-                if ($stmt->rowCount() >= 1) {
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($stmt->execute()) {
+                    $row = $stmt->fetch();
+                    $nomDeCompteBDD = $row['nomDeCompte'];
                     $motDePasseBDD = $row['motDePasse'];
-                    if ($motDePasseBDD == $motDePasse) {
-                        if ($nomDeCompte == 'admin') {
+                    $statutBDD = $row['statut'];
+                    if ($nomDeCompteBDD == $nomDeCompte && password_verify($motDePasse, $motDePasseBDD)) {
+                        if ($statutBDD == 'admin') {
                             header('Location: pages/dashBoardAdmin.php');
                             exit();
+                        } else if (is_null($statutBDD)) {
+                            echo '<div class="alert_container">Aucun statut accordé pour cet utilisateur, Veuillez patienter qu\'un admin valide votre inscription.</div>';
                         } else {
                             header('Location: pages/dashBoardUser.php');
                             exit();
                         }
-                    } else {
-                        echo "Mot de passe incorrect.";
                     }
                 } else {
-                    echo "Nom de compte incorrect ou mot de passe incorrect.";
+                    echo "<div class='alert_container'>Nom de compte ou mot de passe incorrect.</div>";
                 }
             } catch (PDOException $e) {
-                die('Erreur de requête : ' . $e->getMessage());
+                echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
             }
         }
 
-        echo '<main>
+        echo '
         <form class="login_container" method="POST">
             <div class="logo_container">
                 <img src="" alt="">
@@ -90,14 +90,13 @@
             type="submit"
             name="SubmitFormLogin">Se connecter</button>
             <p>Vous souhaitez vous inscrire, <a class="link_switch_2" href="pages/registrerForm.php">cliquez ici</a></p>
-        <a href="pages/dashBoardUser.php">link dashboard user</a>
-            </form>
-        </main>'
+            </form>'
         ?>
     </main>
 
 </body>
 
 <script src="javascript/loginScript.js"></script>
+<script src="javascript/navBar.js"></script>
 
 </html>
