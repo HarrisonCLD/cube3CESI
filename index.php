@@ -25,7 +25,7 @@ session_start()
         <!-- // LOGIN CONTAINER -->
 
         <?php
-        session_start();
+        /*session_start();*/
 
         require_once('backend/config.php');
 
