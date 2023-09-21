@@ -35,8 +35,8 @@
 
         if (isset($_POST['SubmitFormLogin'])) {
             try {
-                $nomDeCompte = $_POST['nomDeCompte'];
-                $motDePasse = $_POST['motDePasse'];
+                $nomDeCompte = htmlspecialchars($_POST['nomDeCompte']);
+                $motDePasse = htmlspecialchars($_POST['motDePasse']);
 
                 $sql = 'SELECT nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = :nomDeCompte';
                 $stmt = $pdo->prepare($sql);
@@ -48,26 +48,26 @@
                     $nomDeCompteBDD = $row['nomDeCompte'];
                     $motDePasseBDD = $row['motDePasse'];
                     $statutBDD = $row['statut'];
-                    if ($nomDeCompteBDD == $nomDeCompte && $motDePasseBDD == $motDePasse) {
+                    if ($nomDeCompteBDD == $nomDeCompte && password_verify($motDePasse, $motDePasseBDD)) {
                         if ($statutBDD == 'admin') {
                             header('Location: pages/dashBoardAdmin.php');
                             exit();
+                        } else if (is_null($statutBDD)) {
+                            echo '<div class="alert_container">Aucun statut accordé pour cet utilisateur, Veuillez patienter qu\'un admin valide votre inscription.</div>';
                         } else {
                             header('Location: pages/dashBoardUser.php');
                             exit();
                         }
-                    } else if ($motDePasseBDD != $motDePasse) {
-                        echo "<div class='alert_container'>Nom de compte incorrect ou mot de passe incorrect.</div>";
                     }
                 } else {
-                    echo "<div class='alert_container'>Nom de compte incorrect ou mot de passe incorrect.</div>";
+                    echo "<div class='alert_container'>Nom de compte ou mot de passe incorrect.</div>";
                 }
             } catch (PDOException $e) {
-                die('Erreur de requête : ' . $e->getMessage());
+                echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
             }
         }
 
-        echo '<main>
+        echo '
         <form class="login_container" method="POST">
             <div class="logo_container">
                 <img src="" alt="">
@@ -90,8 +90,7 @@
             type="submit"
             name="SubmitFormLogin">Se connecter</button>
             <p>Vous souhaitez vous inscrire, <a class="link_switch_2" href="pages/registrerForm.php">cliquez ici</a></p>
-            </form>
-        </main>'
+            </form>'
         ?>
     </main>
 

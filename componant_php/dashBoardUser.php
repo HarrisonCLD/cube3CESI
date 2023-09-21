@@ -15,9 +15,7 @@ try {
     $stmtDateTime  = $pdo->prepare($sqlDateTime);
     $stmtDateTime->execute();
 
-    $datetime = $stmtDateTime->fetch();
-    $datetime_string = $stmtDateTime->fetchColumn();
-
+    $datetime_strings = $stmtDateTime->fetchAll(PDO::FETCH_COLUMN);
 
     // HTML simple
     echo '<main>
@@ -95,42 +93,33 @@ try {
 
     $heures = ['8h00', '9h00', '10h00', '11h00', '12h00', '13h00', '14h00', '15h00', '16h00', '17h00', '18h00', '19h00'];
 
-    $datetime = new DateTime($datetime_string);
-    $heureTimeBDD = $datetime->format('H');
-    $datetimeBDD = $datetime->format('d');
-    $monthTimeBDD = $datetime->format('m');
-    $timeZone = date_default_timezone_set('Europe/Paris');
-    $dateToday = date('d');
-    $monthToday = date('m');
-
-    foreach ($heures as $heure) {
+    for ($k = 0; $k < count($heures); $k++) {
         echo '<tr>';
-        echo '<td class="heure_container_planning">' . $heure . '</td>';
+        echo '<td class="heure_container_planning">' . $heures[$k] . '</td>';
 
-        $heuresString = substr($heure, 0, 2);
+        for ($j = 0; $j < 15; $j++) {
+            if (isset($datetime_strings[$j])) {
+                $datetime = new DateTime($datetime_strings[$j]);
+                $heureTimeBDD = $datetime->format('H');
+                $datetimeBDD = $datetime->format('d');
+                $monthTimeBDD = $datetime->format('m');
+                $dateToday = date('d');
+                $monthToday = date('m');
 
-        if ($dateToday == $datetimeBDD && $monthToday == $monthTimeBDD && $heuresString == $heureTimeBDD) {
-            echo '<td class="occuped"></td>';
-        } else {
-            echo '<td></td>';
+                $heuresString = substr($heures[$k], 0, 2);
+
+                if ($dateToday === $datetimeBDD && $monthToday === $monthTimeBDD && $heuresString === $heureTimeBDD) {
+                    echo '<td class="occuped"></td>';
+                } else {
+                    echo '<td></td>';
+                }
+            } else {
+                echo '<td></td>';
+            }
         }
 
         echo '</tr>';
     }
-
-
-    // for ($i = 0; $i < count($heures); $i++) {
-    //     echo '<tr>';
-    //     echo '<td class="heure_container_planning">' . $heures[$i] . '</td>';
-
-    //     $heuresString = substr($heures[$i], 0, 2);
-
-    //     if ($dateToday == $datetimeBDD && $monthToday == $monthTimeBDD && $heuresString == $heureTimeBDD) {
-    //         echo '<td class="occuped"></td>';
-    //     } else {
-    //         echo '<td></td>';
-    //     }
-    // }
 
     echo '</tr>
     </table>

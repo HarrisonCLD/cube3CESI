@@ -62,12 +62,12 @@ nav .separation_bar {
 .sunSVG {
     display: none;
     opacity: 0;
-    transition: opacity 400ms ease;
+    transition: opacity 300ms ease;
 }
 
 .moonSVG {
     opacity: 1;
-    transition: opacity 400ms ease;
+    transition: opacity 300ms ease;
 }
 
 .active1SVG {

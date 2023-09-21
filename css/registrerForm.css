@@ -35,7 +35,8 @@
 .firstname_container,
 .photo_container,
 .username_container,
-.password_container {
+.password_container,
+.password_container_2 {
     display: flex;
     flex-direction: column;
     margin: 13px 0px;
@@ -51,7 +52,8 @@
 .name_container input,
 .firstname_container input,
 .username_container input,
-.password_container input {
+.password_container input,
+.password_container_2 input {
     height: 30px;
     width: 200px;
     padding: 15px;

@@ -39,6 +39,14 @@ li {
     list-style-type: none;
 }
 
+.alert_container {
+    position: absolute;
+    padding: 25px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* //OVERLAY DARK THEME CSS */
 
 .overlay_1 {
@@ -98,4 +106,8 @@ li {
 
 .dark_theme_for_annonce_li {
     color: black;
+}
+
+.dark_theme_for_th_and_td {
+    color: white;
 }

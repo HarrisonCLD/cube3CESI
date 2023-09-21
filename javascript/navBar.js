@@ -8,6 +8,11 @@ const pAll = document.querySelectorAll('p')
 const liAll = document.querySelectorAll('li')
 const svgAll = document.querySelectorAll('svg')
 const separationBar = document.querySelectorAll('.separation_bar')
+const tdAll = document.querySelectorAll('td')
+const thAll = document.querySelectorAll('th')
+
+console.log(tdAll)
+console.log(thAll)
 
 const Tab_Overlay = []
 
@@ -55,7 +60,6 @@ function DarkMod() {
     for (let i = 0; i < h3All.length; i++) {
         h3All[i].classList.toggle('dark_theme_for_content')
     }
-
     for (let i = 0; i < pAll.length; i++) {
         pAll[i].classList.toggle('dark_theme_for_content')
     }
@@ -67,6 +71,12 @@ function DarkMod() {
     }
     for (let i = 0; i < separationBar.length; i++) {
         separationBar[i].classList.toggle('dark_theme_for_separation')
+    }
+    for (let i = 0; i < tdAll.length; i++) {
+        tdAll[i].classList.toggle(('dark_theme_for_th_and_td'))
+    }
+    for (let i = 0; i < thAll.length; i++) {
+        thAll[i].classList.toggle(('dark_theme_for_th_and_td'))
     }
     for (let i = 0; i < ulAnnonceContent.length; i++) {
         ulAnnonceContent[i].addEventListener('mouseenter', () => {
@@ -92,10 +102,10 @@ for (let i = 0; i < tab_SVG_DarkNLight.length; i++) {
             }, 200)
             setTimeout(() => {
                 tab_SVG_DarkNLight[1].style.display = 'block';
-            }, 400)
+            }, 300)
             setTimeout(() => {
                 tab_SVG_DarkNLight[1].classList.remove('active2SVG')
-            }, 600);
+            }, 400);
             DarkMod();
             console.log(Tab_Overlay)
             for (let i = 0; i < Tab_Overlay.length; i++) {
@@ -109,10 +119,10 @@ for (let i = 0; i < tab_SVG_DarkNLight.length; i++) {
             }, 200)
             setTimeout(() => {
                 tab_SVG_DarkNLight[0].style.display = 'block';
-            }, 400)
+            }, 300)
             setTimeout(() => {
                 tab_SVG_DarkNLight[0].classList.add('active1SVG')
-            }, 600);
+            }, 400);
             DarkMod();
         }
     })
