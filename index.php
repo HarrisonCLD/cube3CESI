@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -50,11 +53,13 @@
                     $statutBDD = $row['statut'];
                     if ($nomDeCompteBDD == $nomDeCompte && password_verify($motDePasse, $motDePasseBDD)) {
                         if ($statutBDD == 'admin') {
+                            $_SESSION['admin'];
                             header('Location: pages/dashBoardAdmin.php');
                             exit();
                         } else if (is_null($statutBDD)) {
                             echo '<div class="alert_container">Aucun statut accordé pour cet utilisateur, Veuillez patienter qu\'un admin valide votre inscription.</div>';
                         } else {
+                            $_SESSION['user'];
                             header('Location: pages/dashBoardUser.php');
                             exit();
                         }
