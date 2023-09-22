@@ -58,12 +58,15 @@ button {
 
 .alert_container {
     position: absolute;
+    z-index: 9999;
     padding: 25px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     text-align: center;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 /* MAIN CONTAINER ALL PAGE */

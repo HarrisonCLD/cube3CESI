@@ -21,7 +21,8 @@ session_start();
         exit();
     } else if (isset($_SESSION['id_utilisateur'])) {
 
-        $iUser = $_SESSION['id_utilisateur'];
+        $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
+        $idUser = $_SESSION['id_utilisateur'];
 
         include "../componant_php/navBarV2.php";
         include "../componant_php/options.php";

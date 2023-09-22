@@ -128,3 +128,9 @@ for (let i = 0; i < tab_SVG_DarkNLight.length; i++) {
     })
 }
 
+const ContentOptionsOff = document.querySelector('.profil_options');
+const ContentOptionsOn = document.querySelector('.profil_options_content');
+
+ContentOptionsOff.addEventListener('click', () => {
+    ContentOptionsOn.classList.toggle('active_options');
+})
