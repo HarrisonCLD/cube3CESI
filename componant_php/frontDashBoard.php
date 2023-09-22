@@ -1,65 +1,39 @@
 <?php
+
+
  echo '<main>
  <div class="dashBoard_admin">
-  <div class="top_dashboard">
-    <div class="compte">
+   <div class="col_1">
+     <div class="graphique"></div>
+       <div class="vente">
+         <h3 class="dernieresVentes">Dernières ventes</h3>
+         <div class="separation"></div>
+           <p>Lorem ipsum dolor sit amet,<br>consectetur adipiscing elit,<br>sed eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+       </div>
+   </div>
+   <div class="col_2">
+     <div class="commentaire">
+       <h3 class="clients">Derniers commentaires des clients</h3>
+       <div class="separation"></div>
+       <div class="derniers">
+         <p>Lorem ipsum dolor sit amet,<br>consectetur adipiscing elit,<br>sed eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+       </div>
+     </div>
+   <div class="compte">
        <h3>Information du compte</h3>
        <div class="separation"></div>
-        <div class="description">
-            <p>Nom du compte</p>
-            <p>Numéro de téléphone</p>
-            <p>E-mail :</p>
-            <p>Type, admin ou employés</p>
-            <p>Adresse ?</p>
-            <p>Pays</p>
-        </div>
-    </div>
-    
-    <div class="agenda">
-        <h3 class="planning">Agenda</h3>
-        <div class="separation"></div>
-        <div class="rdv">
-            <div class="demain">
-            <p>Demain</p>
-            </div>
-            <div class="apres-demain">
-            <p>Après-demain</p>
-            </div>
-            <div class="jour3">
-            <p>3ème jour</p>
-            </div>
-        </div>
-        <div class="colonne_1"></div>
-        <div class="colonne_2"></div>
-        <div class="colonne_3"></div>
-    </div>
-    <div class="commentaire">
-    <h3 class="clients">Derniers commentaires des clients</h3>
-    <div class="separation"></div>
-        <div class="derniers"><p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit,
-            <br>sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-    </div>
-    </div>
-    <div class="bottom_dashboard">
-    <div class="mail">
-    <h3 class="derniersMails">Derniers mails</h3>
-    <div class="separation"></div>
-        <div class="boite"><p>Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit,
-            <br> sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-    </div>
-    <div class="vente">
-    <h3 class="dernieresVentes">Dernières ventes</h3>
-    <div class="separation"></div>
-        <div class="graphique"><p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit,
-            <br>sed  eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </main>';
+           <div class="description">
+           <p>Nom du compte</p>
+           <p>Numéro de téléphone</p>
+           <p>E-mail :</p>
+           <p>Type, admin ou employés</p>
+           <p>Adresse ?</p>
+           <p>Pays</p>
+           </div>
+       </div>
+   </div>
+ </div>
+</main>';
 
 ?>
 
