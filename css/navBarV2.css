@@ -20,6 +20,10 @@ nav .separation_bar {
     margin-top: 5px;
 }
 
+nav a {
+    color: black;
+}
+
 .logo_container {
     width: 130px;
 }

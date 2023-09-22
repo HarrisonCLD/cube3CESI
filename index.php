@@ -1,5 +1,9 @@
 <?php
-session_start()
+session_start();
+
+$_SESSION['admin'] = false;
+$_SESSION['user'] = false;
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,7 +29,6 @@ session_start()
         <!-- // LOGIN CONTAINER -->
 
         <?php
-        /*session_start();*/
 
         require_once('backend/config.php');
 
@@ -42,34 +45,37 @@ session_start()
                 $nomDeCompte = htmlspecialchars($_POST['nomDeCompte']);
                 $motDePasse = htmlspecialchars($_POST['motDePasse']);
 
-                $sql = 'SELECT nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = :nomDeCompte';
+                $sql = 'SELECT id_utilisateur, nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = :nomDeCompte';
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':nomDeCompte', $nomDeCompte, PDO::PARAM_STR);
                 $stmt->execute();
 
-                if ($stmt->execute()) {
-                    $row = $stmt->fetch();
-                    $nomDeCompteBDD = $row['nomDeCompte'];
-                    $motDePasseBDD = $row['motDePasse'];
-                    $statutBDD = $row['statut'];
+                $row = $stmt->fetch();
+                $idUserBDD = $row['id_utilisateur'];
+                $nomDeCompteBDD = $row['nomDeCompte'];
+                $motDePasseBDD = $row['motDePasse'];
+                $statutBDD = $row['statut'];
+                if (isset($nomDeCompteBDD)) {
                     if ($nomDeCompteBDD == $nomDeCompte && password_verify($motDePasse, $motDePasseBDD)) {
                         if ($statutBDD == 'admin') {
-                            $_SESSION['admin'];
+                            $_SESSION['id_utilisateur'] = $idUserBDD;
+                            $_SESSION['admin'] = true;
                             header('Location: pages/dashBoardAdmin.php');
                             exit();
                         } else if (is_null($statutBDD)) {
                             echo '<div class="alert_container">Aucun statut accordé pour cet utilisateur, Veuillez patienter qu\'un admin valide votre inscription.</div>';
                         } else {
-                            $_SESSION['user'];
+                            $_SESSION['id_utilisateur'] = $idUserBDD;
+                            $_SESSION['user'] = true;
                             header('Location: pages/dashBoardUser.php');
                             exit();
                         }
                     }
                 } else {
-                    echo "<div class='alert_container'>Nom de compte ou mot de passe incorrect.</div>";
+                    echo '<div class="alert_container">Erreur avec la base de donnée 1.</div>';
                 }
             } catch (PDOException $e) {
-                echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+                echo '<div class="alert_container">Erreur avec la base de donnée 2.</div>';
             }
         }
 

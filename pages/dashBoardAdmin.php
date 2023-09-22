@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,11 +21,17 @@
 <body>
 
     <?php
-    include '../componant_php/navBarV2.php';
-    ?>
+    if (!isset($_SESSION['admin']) || !isset($_SESSION['user'])) {
+        header('Location: ../index.php');
+        exit();
+    } else if (isset($_SESSION['id_utilisateur'])) {
 
-    <?php
-    include '../componant_php/frontDashBoard.php';
+        $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
+        $iUser = $_SESSION['id_utilisateur'];
+
+        include '../componant_php/navBarV2.php';
+        include '../componant_php/frontDashBoard.php';
+    }
     ?>
 
     <script src="../javascript/navBar.js"></script>

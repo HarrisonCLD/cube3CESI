@@ -1,18 +1,13 @@
 .dashBoard_admin {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
+    height: 80%;
 }
 
-h3{
+h3 {
     color: blue;
     text-align: center;
 }
 
-.separation{
+.separation {
     width: 100%;
     height: 3px;
     margin: 10px 0px;
@@ -57,13 +52,15 @@ h3{
 
 }
 
-.colonne_1, .colonne_2, .colonne_3{
+.colonne_1,
+.colonne_2,
+.colonne_3 {
     display: flex;
     justify-content: space-around;
     width: 33%;
     border: 1px solid #000;
     height: 20px;
-} 
+}
 
 
 .commentaire{
@@ -89,7 +86,9 @@ h3{
     display: flex;
     justify-content: flex-start;
 }
-.mail, .vente{
+
+.mail,
+.vente {
     border-radius: 10px;
 }
 

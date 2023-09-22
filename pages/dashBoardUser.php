@@ -1,6 +1,6 @@
-<!-- <?php
-        session_start();
-        ?> -->
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,16 +21,21 @@
 <body>
 
     <?php
-    // if (!isset($_SESSION['user'])) {
-    //     header('Location: ../index.php');
-    // } else {
-    include '../componant_php/navBarV2.php';
-    include '../componant_php/dashBoardUser.php';
+    if (!isset($_SESSION['admin']) || !isset($_SESSION['user'])) {
+        header('Location: ../index.php');
+        exit();
+    } else if (isset($_SESSION['id_utilisateur'])) {
 
+        $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
+        $iUser = $_SESSION['id_utilisateur'];
+
+        include '../componant_php/navBarV2.php';
+        include '../componant_php/dashBoardUser.php';
+    }
     ?>
-
     <script src="../javascript/dashBoardUser.js"></script>
     <script src="../javascript/navBar.js"></script>
+    <script src="../javascript/onChangeCP.js"></script>
 
 </body>
 
