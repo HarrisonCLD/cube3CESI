@@ -6,7 +6,8 @@ echo '<nav>
         <div class="navList_container">
             <ul>
                 <li>Accueil</li>
-                
+                <li>Agenda</li>
+                <li>Mails</li>
                 <li>Gestion du magasin</li>
                 <li>Gestion Ressources humaines</li>
             </ul>
