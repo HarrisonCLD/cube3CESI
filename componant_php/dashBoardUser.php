@@ -6,21 +6,25 @@ try {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // REQUÊTE POUR CONTAINER ANNONCE MAIL INTERNE
     $sqlAnnonces = "SELECT titre, categorie, contenu, auteur FROM annonces";
     $stmtAnnonces = $pdo->prepare($sqlAnnonces);
     $stmtAnnonces->execute();
     $annonces = $stmtAnnonces->fetchAll(PDO::FETCH_ASSOC);
 
+    //REQUÊTE POUR CONTAINER PLANNING SALARIÉ
     $sqlDateTime = "SELECT date FROM horaires";
+    // WHERE date >= CURDATE()
+    // ORDER BY date ASC";
     $stmtDateTime  = $pdo->prepare($sqlDateTime);
     $stmtDateTime->execute();
+    $datetime_strings = $stmtDateTime->fetchAll(PDO::FETCH_COLUMN);
+} catch (PDOException $e) { //Si erreur avec la requête a la BDD
+    echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+}
 
-    // $datetime_strings = $stmtDateTime->fetchAll(PDO::FETCH_COLUMN);
-    $datetime_strings = ["2023-09-22 12:19:19"];
-
-
-    // HTML simple
-    echo '<main>
+// HTML simple
+echo '<main>
     <div class="full_screen_container">
     <div class="closeButton"></div>
     <h4 class="title_full_screen"></h4>
@@ -37,16 +41,16 @@ try {
                 <div class="separation_bar"></div>
                 <div class="annonce_content">';
 
-    foreach ($annonces as $rowAnnonces) {
-        echo '<ul>';
-        echo "<li><h4 class='title_small'>" . $rowAnnonces["titre"] . "</h4></li>";
-        echo "<li><p class='categorie_small'>" . $rowAnnonces["categorie"] . "</p></li>";
-        echo "<li><p class='contenu_small'>" . $rowAnnonces["contenu"] . "</p></li>";
-        echo "<li><p class='auteur_small'>" . $rowAnnonces["auteur"] . "</p></li>";
-        echo '</ul>';
-    }
+foreach ($annonces as $rowAnnonces) {
+    echo '<ul>';
+    echo "<li><h4 class='title_small'>" . $rowAnnonces["titre"] . "</h4></li>";
+    echo "<li><p class='categorie_small'>" . $rowAnnonces["categorie"] . "</p></li>";
+    echo "<li><p class='contenu_small'>" . $rowAnnonces["contenu"] . "</p></li>";
+    echo "<li><p class='auteur_small'>" . $rowAnnonces["auteur"] . "</p></li>";
+    echo '</ul>';
+}
 
-    echo '</div>
+echo '</div>
             </div>
             <div class="planning_container">
                 <div class="top_content_planning">
@@ -68,62 +72,68 @@ try {
              <tr>
         <th></th>';
 
-    $timeZone = date_default_timezone_set('Europe/Paris');
-    $today = date('d-m');
-    $todayExplode = explode('-', $today);
-    $day = $todayExplode[0];
-    $month = $todayExplode[1];
+$timeZone = date_default_timezone_set('Europe/Paris');
+$today = date('d-m');
+$todayExplode = explode('-', $today);
+$day = $todayExplode[0];
+$month = $todayExplode[1];
 
-    echo '<th>' . $day . '/' . $month . '</th>';
+echo '<th>' . $day . '/' . $month . '</th>';
 
-    for ($i = 0; $i < 14; $i++) {
-        $day++;
+for ($i = 0; $i < 14; $i++) {
+    $day++;
 
-        if (($day > 31 && ($month == '01' || $month == '03' || $month == '05' || $month == '07' || $month == '08' || $month == '10' || $month == '12')) ||
-            ($day > 30 && ($month == '04' || $month == '06' || $month == '09' || $month == '11')) ||
-            ($day > 28 && $month == '02')
-        ) {
-            $day = 01;
-            $month++;
-            echo '<th>' . $day . '/' . $month . '</th>';
+    if (($day > 31 && ($month == '01' || $month == '03' || $month == '05' || $month == '07' || $month == '08' || $month == '10' || $month == '12')) ||
+        ($day > 30 && ($month == '04' || $month == '06' || $month == '09' || $month == '11')) ||
+        ($day > 28 && $month == '02')
+    ) {
+        $day = 01;
+        $month++;
+        echo '<th>' . $day . '/' . $month . '</th>';
+    } else {
+        echo '<th>' . $day . '/' . $month . '</th>';
+    }
+}
+
+echo '</tr>';
+
+
+
+$heures = ['8h00', '9h00', '10h00', '11h00', '12h00', '13h00', '14h00', '15h00', '16h00', '17h00', '18h00', '19h00'];
+
+for ($k = 0; $k < count($heures); $k++) {
+    echo '<tr>';
+    echo '<td class="heure_container_planning">' . $heures[$k] . '</td>';
+
+    for ($j = 0; $j < 15; $j++) {
+        if (isset($datetime_strings[$j])) {
+            $datetime = new DateTime($datetime_strings[$j]);
+            $heureTimeBDD = $datetime->format('H');
+            $datetimeBDD = $datetime->format('d');
+            $monthTimeBDD = $datetime->format('m');
+            $dateToday = date('d');
+            $monthToday = date('m');
+
+            $heuresString = substr($heures[$k], 0, 2);
+
+            $dateIncremente = $dateToday;
+
+            if ($dateIncremente === $datetimeBDD && $monthToday === $monthTimeBDD && $heuresString === $heureTimeBDD) {
+                echo '<td class="occuped"></td>';
+                $dateIncremente++;
+            } else {
+                echo '<td></td>';
+                $dateIncremente++;
+            }
         } else {
-            echo '<th>' . $day . '/' . $month . '</th>';
+            echo '<td></td>';
         }
     }
 
     echo '</tr>';
+}
 
-    $heures = ['8h00', '9h00', '10h00', '11h00', '12h00', '13h00', '14h00', '15h00', '16h00', '17h00', '18h00', '19h00'];
-
-    for ($k = 0; $k < count($heures); $k++) {
-        echo '<tr>';
-        echo '<td class="heure_container_planning">' . $heures[$k] . '</td>';
-
-        for ($j = 0; $j < 15; $j++) {
-            if (isset($datetime_strings[$j])) {
-                $datetime = new DateTime($datetime_strings[$j]);
-                $heureTimeBDD = $datetime->format('H');
-                $datetimeBDD = $datetime->format('d');
-                $monthTimeBDD = $datetime->format('m');
-                $dateToday = date('d');
-                $monthToday = date('m');
-
-                $heuresString = substr($heures[$k], 0, 2);
-
-                if ($dateToday === $datetimeBDD && $monthToday === $monthTimeBDD && $heuresString === $heureTimeBDD) {
-                    echo '<td class="occuped"></td>';
-                } else {
-                    echo '<td></td>';
-                }
-            } else {
-                echo '<td></td>';
-            }
-        }
-
-        echo '</tr>';
-    }
-
-    echo '</tr>
+echo '</tr>
     </table>
     </div>
             </div>
@@ -133,20 +143,46 @@ try {
                 <div class="top_content_cp">
                     <h3>CONGÉS PAYÉS :</h3>
                 </div>
-                <div class="separation_bar"></div>
-                <div class="cp_content">   
-    <div>
-        <p>Début des CP :</p>
-        <input type="date">
-    </div>
-    <div>
-        <p>Fin des CP :</p>
-        <input type="date">
-    </div>
-</div>
-                <button class="add_cp_but">Demande de CP</button>
-            </div>
+                <div class="separation_bar"></div>';
 
+if (isset($_POST['submitDemandeCP'])) {
+    $debutCP = $_POST['debutCP'];
+    $finCP = $_POST['finCP'];
+    try {
+        $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        //REQUÊTE POUR CONTAINER CONGÉS PAYÉS
+        $sqlCP = "INSERT INTO congesPaye (debutCP, finCP) VALUES (:debutCP, :finCP)";
+        $stmtCP = $pdo->prepare($sqlCP);
+
+        $stmtCP->bindParam(':debutCP', $debutCP);
+        $stmtCP->bindParam(':finCP', $finCP);
+
+        $stmtCP->execute();
+    } catch (PDOException $e) { //Si erreur avec la requête a la BDD
+        echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+    }
+}
+
+echo '<form class="cp_content" method="POST">
+<div class="heures_enter_form">
+    <div>
+        <label>Début des CP :</label>
+        <input class="onChange1" type="date" name="debutCP">
+    </div>
+    <div>
+        <label>Fin des CP :</label>
+        <input class="onChange2" type="date" name="finCP" onChange="CalculDifferenceJour()">
+    </div>
+    </div>
+<div><span class="diff_heure_container"></span></div>
+                <button class="add_cp_but"
+                type="submit"
+                name="submitDemandeCP"
+                >Demande de CP</button>
+            </div>
+            </form>
             <div class="heure_container">
                 <div class="top_heure_content">
                     <h3>HEURES :</h3>
@@ -161,6 +197,3 @@ try {
         </div>
     </div>
 </main>';
-} catch (PDOException $e) { //Initialisation si erreur avec la requête a la BDD
-    die('Erreur : ' . $e->getMessage());
-};

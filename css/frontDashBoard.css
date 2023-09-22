@@ -1,18 +1,13 @@
 .dashBoard_admin {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
+    height: 80%;
 }
 
-h3{
+h3 {
     color: blue;
     text-align: center;
 }
 
-.separation{
+.separation {
     width: 100%;
     height: 3px;
     margin: 10px 0px;
@@ -40,7 +35,8 @@ h3{
     justify-content: space-around;
     margin-top: 15px;
 }
-.compte{
+
+.compte {
     border: 2px black solid;
     background-color: #FAF0E6;
     padding: 30px;
@@ -71,7 +67,7 @@ h3{
     /* le 10 correspond au haut et bas et le 0 à gauche et droite*/
 }
 
-.agenda{
+.agenda {
     background-color: #FAF0E6;
     border: solid black 2px;
     border-radius: 30px;
@@ -96,16 +92,18 @@ h3{
     width: 100%;
 }
 
-.colonne_1, .colonne_2, .colonne_3{
+.colonne_1,
+.colonne_2,
+.colonne_3 {
     display: flex;
     justify-content: space-around;
     width: 33%;
     border: 1px solid #000;
     height: 20px;
-} 
+}
 
 
-.commentaire{
+.commentaire {
     background-color: #FAF0E6;
     border: black 2px solid;
     border-radius: 30px;
@@ -126,12 +124,14 @@ h3{
     display: flex;
     justify-content: flex-start;
 }
-.mail, .vente{
+
+.mail,
+.vente {
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-.mail{
+.mail {
     background-color: #FAF0E6;
     border: black 2px solid;
     border-radius: 30px;
@@ -158,7 +158,7 @@ h3{
     justify-content: center;
 }
 
-.vente{
+.vente {
     background-color: #FAF0E6;
     border: black 2px solid;
     border-radius: 30px;

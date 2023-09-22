@@ -1,9 +1,9 @@
 <?php
 //LINK DATA BASE HARRISON
-$db_host = '127.0.0.1';
+$db_host = 'localhost';
 $db_name = 'cube3CESI';
-$db_user = 'bubu51370';
-$db_password = '030502Em';
+$db_user = 'adminUser';
+$db_password = 'root';
 //
 
 // function pour executé des requêtes PDO

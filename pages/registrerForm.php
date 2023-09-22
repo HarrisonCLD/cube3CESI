@@ -25,73 +25,70 @@
     try {
         $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die('Erreur de connexion : ' . $e->getMessage());
-    }
 
-    if (isset($_POST['SubmitFormInscription'])) {
-        try {
-            $numeroDeBadge = $_POST['numeroDeBadge'];
-            $email = $_POST['email'];
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $nomDeCompte = $_POST['nomDeCompte'];
-            $motDePasse = $_POST['motDePasse'];
-            $motDePasse2 = $_POST['motDePasse2'];
+        if (isset($_POST['SubmitFormInscription'])) {
+            try {
+                $numeroDeBadge = $_POST['numeroDeBadge'];
+                $email = $_POST['email'];
+                $nom = $_POST['nom'];
+                $prenom = $_POST['prenom'];
+                $nomDeCompte = $_POST['nomDeCompte'];
+                $motDePasse = $_POST['motDePasse'];
+                $motDePasse2 = $_POST['motDePasse2'];
 
-            if (
-                isset($_POST['numeroDeBadge']) && isset($_POST['email']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['nomDeCompte']) && isset($_POST['motDePasse']) && isset(($_POST['motDePasse2']))
-            ) {
                 if (
-                    !empty($_POST['numeroDeBadge']) && !empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['nomDeCompte']) && !empty($_POST['motDePasse']) && !empty($_POST['motDePasse2'])
+                    isset($_POST['numeroDeBadge']) && isset($_POST['email']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['nomDeCompte']) && isset($_POST['motDePasse']) && isset(($_POST['motDePasse2']))
                 ) {
-                    $NumBadgeValid = htmlspecialchars($numeroDeBadge);
+                    if (
+                        !empty($_POST['numeroDeBadge']) && !empty($_POST['email']) && !empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['nomDeCompte']) && !empty($_POST['motDePasse']) && !empty($_POST['motDePasse2'])
+                    ) {
+                        $NumBadgeValid = htmlspecialchars($numeroDeBadge);
 
-                    if ($NumBadgeValid < 6 && $NumBadgeValid > 6) {
-                        echo '<div class="alert_container">Numéro de badge invalide</div>';
-                    } else {
-                        $MdpUser1 = htmlspecialchars($motDePasse);
-                        $MdpUser2 = htmlspecialchars($motDePasse2);
-
-                        if ($MdpUser1 === $MdpUser2) {
-
-                            $passwordHash = password_hash($MdpUser1, PASSWORD_BCRYPT);
-
-                            $sql = "INSERT INTO utilisateur (numeroDeBadge, email, nom, prenom, nomDeCompte, motDePasse) VALUES (:numeroDeBadge, :email, :nom, :prenom, :nomDeCompte, :motDePasse)";
-                            $stmt = $pdo->prepare($sql);
-
-                            $stmt->bindParam(':numeroDeBadge', $numeroDeBadge);
-                            $stmt->bindParam(':email', $email);
-                            $stmt->bindParam(':nom', $nom);
-                            $stmt->bindParam(':prenom', $prenom);
-                            $stmt->bindParam(':nomDeCompte', $nomDeCompte);
-                            $stmt->bindParam(':motDePasse', $passwordHash);
-
-                            $result = $stmt->execute();
-
-                            if ($result) {
-                                echo '<script>alert("Inscription réussie")</script>';
-                                header('Location: ../index.php');
-                                exit();
-                            } else {
-                                echo '<div class="alert_container">L\'inscription a échoué</div>';
-                            }
+                        if ($NumBadgeValid < 6 && $NumBadgeValid > 6) {
+                            echo '<div class="alert_container">Numéro de badge invalide</div>';
                         } else {
-                            echo '<div class="alert_container">Vos mots de passe ne correspondent pas</div>';
+                            $MdpUser1 = htmlspecialchars($motDePasse);
+                            $MdpUser2 = htmlspecialchars($motDePasse2);
+
+                            if ($MdpUser1 === $MdpUser2) {
+
+                                $passwordHash = password_hash($MdpUser1, PASSWORD_BCRYPT);
+
+                                $sql = "INSERT INTO utilisateur (numeroDeBadge, email, nom, prenom, nomDeCompte, motDePasse) VALUES (:numeroDeBadge, :email, :nom, :prenom, :nomDeCompte, :motDePasse)";
+                                $stmt = $pdo->prepare($sql);
+
+                                $stmt->bindParam(':numeroDeBadge', $numeroDeBadge);
+                                $stmt->bindParam(':email', $email);
+                                $stmt->bindParam(':nom', $nom);
+                                $stmt->bindParam(':prenom', $prenom);
+                                $stmt->bindParam(':nomDeCompte', $nomDeCompte);
+                                $stmt->bindParam(':motDePasse', $passwordHash);
+
+                                $result = $stmt->execute();
+
+                                if ($result) {
+                                    echo '<script>alert("Inscription réussie")</script>';
+                                    header('Location: ../index.php');
+                                    exit();
+                                } else {
+                                    echo '<div class="alert_container">L\'inscription a échoué</div>';
+                                }
+                            } else {
+                                echo '<div class="alert_container">Vos mots de passe ne correspondent pas</div>';
+                            }
                         }
+                    } else {
+                        echo '<div class="alert_container">Veuillez renseigner tout les champs demander</div>';
                     }
                 } else {
                     echo '<div class="alert_container">Veuillez renseigner tout les champs demander</div>';
                 }
-            } else {
-                echo '<div class="alert_container">Veuillez renseigner tout les champs demander</div>';
+            } catch (PDOException $e) {
+                echo '<div class="alert_container">Erreur avec la base de donnée</div>';
             }
-        } catch (PDOException $e) {
-            echo '<div class="alert_container">Erreur avec la base de donnée</div>';
         }
-    }
 
-    echo '<main>
+        echo '<main>
     <form class="registrer_container" method="POST">
             <div class="logo_container">
                 <img src="" alt="">
@@ -164,8 +161,10 @@
             >S\'inscrire</button>
             <p>Vous possédez déjà un compte, <a class="link_switch_1" href="../index.php"">cliquez ici</a></p>
         </form>
-        </main>
-        '
+        </main>';
+    } catch (PDOException $e) {
+        echo '<div class="alert_container">Erreur avec la base de donnée</div>';
+    }
     ?>
 
     <script src="../javascript/navBar.js"></script>
