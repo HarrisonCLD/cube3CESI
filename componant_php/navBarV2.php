@@ -1,4 +1,10 @@
 <?php
+
+// Vérifier si une session est déjà active
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Initialisation de la session si elle n'est pas déjà active
+}
+
 echo '<nav>
 <div class="nav_container">
     <div class="left_nav_container">
@@ -9,8 +15,8 @@ if ($_SESSION['user'] == true) {
     echo '<li><a href="../pages/dashBoardUser.php">Accueil</a></li>';
 } else if ($_SESSION['admin'] == true) {
     echo '<li><a href="../pages/dashBoardAdmin.php">Accueil</a></li>
-                <li>Gestion du magasin</li>
-                      <li>Gestion Ressources humaines</li>';
+                <li><a href="../pages/gestionMagasin.php">Gestion du magasin</a></li>
+                      <li><a href="../pages/ressourcesHumaines.php">Gestion Ressources humaines</a></li>';
 }
 echo '</ul>
         </div>
