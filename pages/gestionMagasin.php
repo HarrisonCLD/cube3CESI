@@ -1,7 +1,3 @@
-<?php 
-        include '../componant_php/navBarV2.php';
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,7 +7,9 @@
     <link  rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    
+<?php 
+        include '../componant_php/navBarV2.php';
+?>
 </body>
 </html>
 

@@ -1,6 +1,4 @@
-<?php 
-        include '../componant_php/navBarV2.php';
-?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,6 +10,14 @@
 </head>
 <body>
     
+<?php 
+        include '../componant_php/navBarV2.php';
+?>
+
+<?php
+include '../componant_php/ressourcesHumaine.php';
+?>
+
 </body>
 </html>
 
