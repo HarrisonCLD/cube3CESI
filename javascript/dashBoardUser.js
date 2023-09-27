@@ -9,8 +9,18 @@ const containerUser = [
     document.querySelector('.heure_container')
 ];
 
+const PlanningTableContent = document.querySelector('.planning_table');
+
+let PlanningFullscreen = false;
+
 svgFullScreen.addEventListener('click', () => {
     svgFullScreen.classList.toggle('active') // toggle class CSS
+    setTimeout(() => {
+        fullScreenContainer.appendChild(PlanningTableContent);
+        fullScreenContainer.style.display = "flex"
+        PlanningTableContent.classList.add('fullscreen_table')
+        PlanningFullscreen = true;
+    }, 300)
 })
 
 // BUTTON "DEMANDE CP" EFFECT
@@ -34,10 +44,13 @@ const closeButton = document.querySelector('.closeButton');
 
 // BOUCLE POUR CREER UN EVENT CLICK SUR CHAQUE UL DE ANNONCE_CONTENT
 
+let AnnoncesFullScreen = false;
+
 for (let i = 0; i < annoncesUl.length; i++) {
     annoncesUl[i].addEventListener('click', () => {
         fullScreenContainer.appendChild(annoncesUl[i]); // UL -> Div en Fullscreen display none
         fullScreenContainer.style.display = "block"; //  Full screen display none -> display block
+        AnnoncesFullScreen = true;
     });
 }
 
@@ -45,23 +58,30 @@ for (let i = 0; i < annoncesUl.length; i++) {
 
 if (closeButton) {
     closeButton.addEventListener('click', () => {
-        const FullScreenUl = document.querySelector('.full_screen_container ul');
-        annonceContent.appendChild(FullScreenUl);
-        fullScreenContainer.style.display = 'none'; // Chemin inverse de l'ul fullscreen à annonce_content
+        if (AnnoncesFullScreen == true) {
+            const FullScreenUl = document.querySelector('.full_screen_container ul');
+            annonceContent.appendChild(FullScreenUl);
+            fullScreenContainer.style.display = 'none'; // Chemin inverse de l'ul fullscreen à annonce_content
+            AnnoncesFullScreen = false;
+            const tab_annoncesUl = Array.from(annoncesUl); // Node List à création d'un tableau 
+            tab_annoncesUl.sort((a, b) => {
+                const textA = a.textContent.toLowerCase();
+                const textB = b.textContent.toLowerCase();
+                return textA.localeCompare(textB); // tri du tableau des ul 
+            });
+            annonceContent.innerHTML = ''; // tableau trier réinjecter dans le DOM pour avoir les ul dans le bon ordre
+            tab_annoncesUl.forEach((ulElement) => {
+                annonceContent.appendChild(ulElement);
+            });
 
-        const tab_annoncesUl = Array.from(annoncesUl); // Node List à création d'un tableau 
-        tab_annoncesUl.sort((a, b) => {
-            const textA = a.textContent.toLowerCase();
-            const textB = b.textContent.toLowerCase();
-            return textA.localeCompare(textB); // tri du tableau des ul 
-        });
-
-        annonceContent.innerHTML = ''; // tableau trier réinjecter dans le DOM pour avoir les ul dans le bon ordre
-        tab_annoncesUl.forEach((ulElement) => {
-            annonceContent.appendChild(ulElement);
-        });
+        } else if (PlanningFullscreen == true) {
+            const FullScreenPlannning = document.querySelector('.planning_content');
+            FullScreenPlannning.appendChild(PlanningTableContent);
+            fullScreenContainer.style.display = 'none'
+            PlanningTableContent.classList.remove('fullscreen_table')
+            PlanningFullscreen = false;
+        }
     });
 }
-
-
 //
+

@@ -1,0 +1,303 @@
+/* // ALL PAGE CSS */
+main .gestionMagasinBoard {
+    flex-direction: row;
+    justify-content: normal;
+    max-width: 90%;
+    max-height: 80%;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+main .navGestionMagasin,
+main .contentGestionMagasin {
+    box-shadow: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.stats_container,
+.add_produit_container,
+.button_container_stock {
+    width: 80%;
+}
+
+/* // CSS NAV GESTION MAGASIN */
+main .gestionMagasinBoard .separation_gestion_container {
+    margin: 0px 20px;
+}
+
+.navGestionMagasin {
+    min-width: 160px;
+}
+
+.navGestionMagasin li {
+    padding: 10px 15px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navGestionMagasin li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.navGestionMagasin li:hover {
+    color: blue;
+    background-color: rgb(243, 243, 243);
+}
+
+.separation_nav_gestion {
+    margin: 15px auto;
+    width: 80%;
+}
+
+/* // CSS CONTENT CONTAINER GESTION MAGASIN */
+
+.contentGestionMagasin {
+    width: 80%;
+}
+
+.separation_gestion_content {
+    margin: 10px 0px;
+}
+
+.gestion_stats_content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.stats_container {
+    flex-direction: column;
+}
+
+/* // CSS FORM ADD PRODUIT  */
+
+.form_add_produit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_add_produit .top_add {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.top_add label {
+    margin-top: 10px;
+}
+
+.top_add input {
+    min-width: 200px;
+    margin: 10px 0px;
+    padding: 6px;
+    border-radius: 5px;
+    border: 0.5px solid black;
+}
+
+.reference_container,
+.nom_container,
+.description_container,
+.prix_container,
+.marque_container,
+.stock_container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* // CSS STOCK PRODUIT CONTAINER  */
+
+.fullscreen_stock {
+    position: absolute;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+    padding: 20px;
+    z-index: 9990;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.top_stock_search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90%;
+}
+
+.searchProduitContainer input {
+    padding: 7px;
+    border: 0.5px solid black;
+    border-radius: 5px;
+}
+
+.filtreProduit {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.content_filtre {
+    display: none;
+}
+
+.containerStock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.line_produit,
+.line_produit_1 {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    width: 90%;
+    margin: 7px 0px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: height 400ms ease;
+}
+
+.line_produit_1 p,
+.line_produit p {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 8px;
+}
+
+.line_produit_up_height {
+    height: 100px;
+}
+
+.line_produit:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.line_produit p {
+    font-size: 0.9em;
+}
+
+.ref_col,
+.ref_col_1 {
+    width: 120px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.nom_col,
+.nom_col_1 {
+    width: 80px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.description_col,
+.description_col_1 {
+    width: 360px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.prix_col,
+.prix_col_1 {
+    width: 40px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.categorie_col,
+.categorie_col_1 {
+    width: 80px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stock_col,
+.stock_col_1 {
+    width: 50px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.right_modify,
+.right_modify_1 {
+    display: flex;
+    align-items: center;
+    width: 80px;
+}
+
+.line_produit .right_modify button {
+    width: 25px;
+    height: 25px;
+    margin: 0px 4px;
+    background-color: transparent;
+    border-radius: 0px;
+    border: 1px solid rgb(35, 35, 79);
+}
+
+
+#button_modify {
+    border: 1px solid blue;
+}
+
+#button_modify svg {
+    color: blue;
+    padding-right: 1px;
+}
+
+#button_delete {
+    border: 1px solid red;
+}
+
+#button_delete svg {
+    color: red;
+    padding-right: 1px;
+}
+
+.active_button_stock {
+    animation: Effect_button 300ms ease-in-out;
+}
+
+@keyframes Effect_button {
+    0% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* // CSS STOCK CONTAINR  */
+
+.stock_container {
+    width: 100%;
+}
+
+.button_container_stock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button_container_stock button {
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+}

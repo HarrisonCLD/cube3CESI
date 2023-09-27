@@ -6,6 +6,7 @@
 @import "dashBoardUser.css";
 @import "frontDashBoard.css";
 @import "options.css";
+@import "dashBoardGestionMagasin.css";
 
 /* // */
 
@@ -20,8 +21,8 @@ html {
 }
 
 body {
-    background-color: white;
-
+    background-color: #e8e8E8;
+    overflow: hidden;
 }
 
 main {
@@ -33,7 +34,12 @@ main {
 }
 
 h3 {
-    color: blue;
+    color: rgb(35, 35, 79);
+}
+
+h5 {
+    color: rgb(35, 35, 79);
+    font-size: 1.1em;
 }
 
 li {
@@ -51,8 +57,8 @@ button {
     margin-top: 10px;
     border-radius: 10px;
     color: white;
-    background-color: blue;
-    border: 1px solid blue;
+    background-color: rgb(42, 42, 93);
+    border: 0.5px solid rgb(42, 42, 93);
     cursor: pointer;
 }
 
@@ -66,14 +72,15 @@ button {
     background-color: white;
     text-align: center;
     border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 /* MAIN CONTAINER ALL PAGE */
 
 .dashBoard_admin,
 .dashBoard_user,
-.options_user {
+.options_user,
+.gestionMagasinBoard {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -86,14 +93,17 @@ button {
 .planning_container,
 .cp_container,
 .heure_container,
-.options_container {
+.options_container,
+.navGestionMagasin,
+.contentGestionMagasin {
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 20px 15px;
     margin: 10px 0px;
     border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 /* //OVERLAY DARK THEME CSS */
@@ -159,4 +169,19 @@ button {
 
 .dark_theme_for_th_and_td {
     color: white;
+}
+
+.dark_theme_for_input {
+    background-color: rgb(170, 170, 170);
+}
+
+.dark_theme_for_profil_a {
+    z-index: 16;
+    color: white;
+}
+
+.dark_theme_for_profil_container {
+    position: absolute;
+    z-index: 15;
+    background-color: black;
 }

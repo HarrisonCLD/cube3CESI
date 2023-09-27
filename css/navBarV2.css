@@ -1,6 +1,7 @@
 nav {
     position: absolute;
     width: 100vw;
+    background-color: rgb(35, 35, 79);
 }
 
 .nav_container {
@@ -9,8 +10,7 @@ nav {
     align-items: center;
     width: 90%;
     margin: auto;
-    margin-top: 10px;
-    padding: 15px;
+    padding: 15px 15px 10px 15px;
 }
 
 nav .separation_bar {
@@ -21,7 +21,7 @@ nav .separation_bar {
 }
 
 nav a {
-    color: black;
+    color: #e8e8e8;
 }
 
 .logo_container {
@@ -47,7 +47,7 @@ nav a {
     height: 1px;
     width: 0%;
     margin-top: 3px;
-    background-color: black;
+    background-color: #e8e8e8;
     transition: width 300ms ease-in-out;
 }
 
@@ -61,6 +61,7 @@ nav a {
 
 .right_nav_container svg {
     margin: 0px 5px;
+    color: #e8e8e8;
 }
 
 .sunSVG {
@@ -105,22 +106,30 @@ nav a {
     transform: translateX(0px);
 }
 
-.profil_options_content svg {
+.profil_options svg {
     transition: transform 300ms ease-in-out;
 }
 
 .active_profil_effect {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 nav .profil_options_content a {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 140px;
+    width: 150px;
     margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    color: rgb(35, 35, 79);
+}
+
+nav .profil_options_content a:hover {
+    background-color: #e8e8E8;
 }
 
 nav .profil_options_content a svg {
     margin-left: 10px;
+    color: rgb(35, 35, 79);
 }

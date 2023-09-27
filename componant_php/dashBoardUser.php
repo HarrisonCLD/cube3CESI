@@ -27,10 +27,6 @@ try {
 echo '<main>
     <div class="full_screen_container">
     <div class="closeButton"></div>
-    <h4 class="title_full_screen"></h4>
-    <p class="categorie_full_screen"></p>
-    <p class="contenu_full_screen"></p>
-    <p class="auteur_full_screen"></p>
     </div>
     <div class="dashBoard_user">
         <div class="top_dashBoard_user">
@@ -68,7 +64,7 @@ echo '</div>
                 </div>
                 <div class="separation_bar"></div>
                 <div class="planning_content">
-                 <table>
+                 <table class="planning_table">
              <tr>
         <th></th>';
 

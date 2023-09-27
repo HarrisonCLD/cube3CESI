@@ -10,9 +10,10 @@ const svgAll = document.querySelectorAll('svg')
 const separationBar = document.querySelectorAll('.separation_bar')
 const tdAll = document.querySelectorAll('td')
 const thAll = document.querySelectorAll('th')
-
-console.log(tdAll)
-console.log(thAll)
+const labelAll = document.querySelectorAll('label')
+const inputAll = document.querySelectorAll('input')
+const h4All = document.querySelectorAll('h4')
+const AProfilContainer = document.querySelectorAll('.profil_options_content a')
 
 const Tab_Overlay = []
 
@@ -23,7 +24,8 @@ function DarkMod() {
         document.querySelector('.annonce_container'),
         document.querySelector('.planning_container'),
         document.querySelector('.cp_container'),
-        document.querySelector('.heure_container')
+        document.querySelector('.heure_container'),
+        document.querySelector('.profil_options_content')
     ];
 
     let Overlay_1_created = false
@@ -31,7 +33,6 @@ function DarkMod() {
 
     const ulAnnonceContent = document.querySelectorAll('.annonce_content ul')
     const liAnnonceContent = document.querySelectorAll('.annonce_content ul li')
-
     //body z index 0
     body.classList.toggle('dark_theme_for_body')
 
@@ -56,6 +57,11 @@ function DarkMod() {
     }
     Overlay_2_created = true
 
+    const Profil_container = document.querySelector('.profil_options_content')
+    Profil_container.classList.remove('dark_theme_for_container')
+    Profil_container.classList.toggle('.dark_theme_for_profil_container')
+
+
     //Boucle H3 color white
     for (let i = 0; i < h3All.length; i++) {
         h3All[i].classList.toggle('dark_theme_for_content')
@@ -78,15 +84,30 @@ function DarkMod() {
     for (let i = 0; i < thAll.length; i++) {
         thAll[i].classList.toggle(('dark_theme_for_th_and_td'))
     }
+    for (let i = 0; i < labelAll.length; i++) {
+        labelAll[i].classList.toggle(('dark_theme_for_content'))
+    }
+    for (let i = 0; i < inputAll.length; i++) {
+        inputAll[i].classList.toggle(('dark_theme_for_input'))
+    }
+    for (let i = 0; i < h4All.length; i++) {
+        h4All[i].classList.toggle(('dark_theme_for_content'))
+    }
+    for (let i = 0; i < AProfilContainer.length; i++) {
+        AProfilContainer[i].classList.toggle(('dark_theme_for_profil_a'))
+    }
     for (let i = 0; i < ulAnnonceContent.length; i++) {
-        ulAnnonceContent[i].addEventListener('mouseenter', () => {
-            ulAnnonceContent[i].classList.toggle('dark_theme_for_annonce_ul_1')
-            for (let k = 0; k < liAnnonceContent.length; k++) {
-                liAnnonceContent[k].classList.toggle('dark_theme_for_annonce_li')
+        ulAnnonceContent[i].addEventListener('mouseover', (e) => {
+            ulAnnonceContent[i].classList.add('dark_theme_for_annonce_ul_1')
+            for (let k = 0; k < h4All.length; k++) {
+                h4All[k].classList.add('dark_theme_for_')
             }
         })
-        ulAnnonceContent[i].addEventListener('mouseleave', () => {
-            ulAnnonceContent[i].classList.toggle('dark_theme_for_annonce_ul_2')
+        ulAnnonceContent[i].addEventListener('mouseout', () => {
+            ulAnnonceContent[i].classList.remove('dark_theme_for_annonce_ul_1')
+            // for (let k = 0; k < h4All.length; k++) {
+            //     h4All[k].classList.remove('dark_theme_for_annonce_li')
+            // }
         })
     }
 }
@@ -107,7 +128,6 @@ for (let i = 0; i < tab_SVG_DarkNLight.length; i++) {
                 tab_SVG_DarkNLight[1].classList.remove('active2SVG')
             }, 400);
             DarkMod();
-            console.log(Tab_Overlay)
             for (let i = 0; i < Tab_Overlay.length; i++) {
                 Tab_Overlay[i].remove()
             }
@@ -131,6 +151,9 @@ for (let i = 0; i < tab_SVG_DarkNLight.length; i++) {
 const ContentOptionsOff = document.querySelector('.profil_options');
 const ContentOptionsOn = document.querySelector('.profil_options_content');
 
+const SVGProfil = document.querySelector('.profil_options svg');
+
 ContentOptionsOff.addEventListener('click', () => {
+    SVGProfil.classList.toggle('active_profil_effect');
     ContentOptionsOn.classList.toggle('active_options');
 })

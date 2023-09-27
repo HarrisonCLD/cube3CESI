@@ -14,11 +14,12 @@ session_start();
 
     <link rel="stylesheet" href="../css/index.css">
 
-    <title>CRM CESI - Options</title>
+    <title>CRM CESI - Gestion de magasin</title>
 
 </head>
 
 <body>
+
     <?php
     if (!isset($_SESSION['admin']) || !isset($_SESSION['user'])) {
         header('Location: ../index.php');
@@ -26,14 +27,15 @@ session_start();
     } else if (isset($_SESSION['id_utilisateur'])) {
 
         $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
-        $idUser = $_SESSION['id_utilisateur'];
+        $iUser = $_SESSION['id_utilisateur'];
 
-        include "../componant_php/navBarV2.php";
-        include "../componant_php/options.php";
+        include '../componant_php/navBarV2.php';
+        include '../componant_php/dashBoardGestionMagasin.php';
     }
     ?>
 
     <script src="../javascript/navBar.js"></script>
+    <script src="../javascript/gestionMagasin.js"></script>
 
 </body>
 

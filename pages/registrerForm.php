@@ -106,7 +106,7 @@
                     <div class="mail_container">
                         <label for="email">Email :</label>
                         <input 
-                        type="text"
+                        type="email"
                         name="email"
                         placeholder="Email..."
                         required>

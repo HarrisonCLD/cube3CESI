@@ -9,7 +9,7 @@ if ($_SESSION['user'] == true) {
     echo '<li><a href="../pages/dashBoardUser.php">Accueil</a></li>';
 } else if ($_SESSION['admin'] == true) {
     echo '<li><a href="../pages/dashBoardAdmin.php">Accueil</a></li>
-                <li>Gestion du magasin</li>
+                <li><a href="../pages/gestionMagasin.php">Gestion du magasin</a></li>
                       <li>Gestion Ressources humaines</li>';
 }
 echo '</ul>
@@ -30,7 +30,7 @@ echo '</ul>
                 fill="currentColor" />
         </svg>
         <div class="profil_options">
-        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="1.9200000000000004" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>      
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="1.9200000000000004" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>      
         </div>  
         <div class="profil_options_content">
         <a href="../pages/optionsPage.php">Options
@@ -49,11 +49,10 @@ echo '</ul>
             </g>
         </svg>
         </a>
-        <a href="">Déconnexion
+        <a href="../pages/logOut.php">Déconnexion
         <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z" fill="currentColor" /><path d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z" fill="currentColor" /></svg>
         </a>
         </div>
     </div>
     </div>
-    <div class="separation_bar"></div>
 </nav>';
