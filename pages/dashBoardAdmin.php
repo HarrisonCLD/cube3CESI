@@ -31,11 +31,11 @@ session_start();
 
         include '../componant_php/navBarV2.php';
         include '../componant_php/frontDashBoard.php';
+        
     }
     ?>
 
-    <script src="../javascript/navBar.js"></script>
-
+<script src="../javascript/navBar.js"></script>
 
 </body>
 
