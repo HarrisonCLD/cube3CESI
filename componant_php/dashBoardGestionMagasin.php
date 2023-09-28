@@ -3,20 +3,19 @@
 require_once('../backend/config.php');
 
 try {
+    //Initialisation de la connexion a la BDD
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    //Requête import de tous les produits
     $sqlSelectProduits = "SELECT * FROM produits";
     $stmtSelectProduits = $pdo->prepare($sqlSelectProduits);
-
     $stmtSelectProduits->execute();
     $AllProduits = $stmtSelectProduits->fetchAll(PDO::FETCH_ASSOC);
 
-    // $jsonData = json_encode($AllProduits);
-
+    //Requête import stats
     $sqlStats = "SELECT * FROM stats";
     $stmtStats = $pdo->prepare($sqlStats);
-
     $stmtStats->execute();
     $AllStats = $stmtStats->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,10 +28,11 @@ try {
         $categorieProduit = $_POST['categorie_produit'];
         $stockProduit = $_POST['stock_produit'];
 
-        $sqlAddProduct = "INSERT INTO produits (reference, nom, description, prix, categorie, stock) VALUES (:reference, :nom, :description, :prix, :categorie, :stock)";
+        $sqlAddProduct = "INSERT INTO produits (id_produits, reference, nom, description, prix, categorie, stock) VALUES (:id_produits, :reference, :nom, :description, :prix, :categorie, :stock)";
 
         $stmtAddProduit = $pdo->prepare($sqlAddProduct);
 
+        $stmtAddProduit->bindParam(':id_produits', $idProduit);
         $stmtAddProduit->bindParam(':reference', $refProduit);
         $stmtAddProduit->bindParam(':nom', $nomProduit);
         $stmtAddProduit->bindParam(':description', $descriptProduit);
@@ -42,14 +42,28 @@ try {
 
         $stmtAddProduit->execute();
     }
-} catch (PDOException $e) { //Si erreur avec la requête a la BDD
-    echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+
+    // //Requête pour delete produits du stock
+    // if (isset($_GET['delete'])) {
+
+    //     $sqlDeleteStock = "DELETE FROM produits WHERE id_produits = :id";
+
+    //     $stmtDeleteStock = $pdo->prepare($sqlDeleteStock);
+    //     $stmtDeleteStock->bindParam(':id', $idToDelete, PDO::PARAM_INT);
+    //     $stmtDeleteStock->execute();
+    // }
+}
+//Catch si il y a une erreur avec la BDD
+catch (PDOException $e) {
+    // echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+    echo "Erreur SQL : " . $e->getMessage();
 }
 
-echo '<main>';
-echo '<div class="fullscreen_stock">';
-echo '<div class="top_stock_search">';
-echo '<div class="searchProduitContainer">
+//Début du HTML du composant
+echo '<main>
+<div class="fullscreen_stock">
+<div class="top_stock_search">
+<div class="searchProduitContainer">
             <input class="searchProduit" type="search" name="searchProduit">
             <div class="result_search"></div>
         </div>
@@ -71,37 +85,43 @@ echo '<div class="searchProduitContainer">
             <p class="filtre_2">Prix : décroissant</p>
             <p class="filtre_3">Prix : croissant</p>
             <p class="filtre_4">Par stock</p>
-        </div>';
-echo '<div class="closeButton"></div>';
-echo '</div>';
-echo '<div class="containerStock">';
-echo '<div class="line_produit_1">';
-echo '<p class="ref_col_1">Réferences</p>';
-echo '<p class="nom_col_1">Nom</p>';
-echo '<p class="description_col_1">Description</p>';
-echo '<p class="prix_col_1">Prix</p>';
-echo '<p class="categorie_col_1">Catégorie</p>';
-echo '<p class="stock_col_1">Stock</p>';
-echo '<div class="right_modify_1"></div>';
-echo '</div>';
+        </div>
+<div class="closeButton"></div>
+</div>
+<table class="containerStock">
+    <thead>
+    <th class="id_col">ID</th>
+    <th class="reference_col">Référence</th>
+    <th class="nom_col">Nom</th>
+    <th class="description_col">Description</th>
+    <th class="prix_col">Prix (€)</th>
+    <th class="categorie_col">Catégorie</th>
+    <th class="stock_col">Stock</th>
+    <th class="actions_col">Actions</th>
+    </thead>
+    <tbody>';
 
+//Utilisation de l'import des produits de la BDD
 foreach ($AllProduits as $rowProduits) {
-    echo '<div class="line_produit">';
-    echo '<div class="ref_col">' . $rowProduits['reference'] . '</div>';
-    echo '<div class="nom_col">' . $rowProduits['nom'] . '</div>';
-    echo '<div class="description_col">' . $rowProduits['description'] . '</div>';
-    echo '<div class="prix_col">' . $rowProduits['prix'] . '</div>';
-    echo '<div class="categorie_col">' . $rowProduits['categorie'] . '</div>';
-    echo '<div class="stock_col">' . $rowProduits['stock'] . '</div>';
-    echo '<div class="right_modify">';
-    echo '<button class="stock_button" id="button_modify"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12C8 13.1046 7.10457 14 6 14C4.89543 14 4 13.1046 4 12C4 10.8954 4.89543 10 6 10C7.10457 10 8 10.8954 8 12Z" fill="currentColor" /><path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z" fill="currentColor" /></svg></button>';
-    echo '<button class="stock_button" id="button_delete"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z" fill="currentColor" /></svg></button>';
-    echo '</div>';
-    echo '</div>';
+    echo '<tr>
+    <td>' . $rowProduits['id_produits'] . '</td>
+    <td>' . $rowProduits['reference'] . '</td>
+    <td>' . $rowProduits['nom'] . '</td>
+    <td>' . $rowProduits['description'] . '</td>
+    <td>' . $rowProduits['prix'] . '</td>
+    <td>' . $rowProduits['categorie'] . '</td>
+    <td>' . $rowProduits['stock'] . '</td>
+    <td class="actions_case">
+    <a class="actions_details" href="details.php?id=' . $rowProduits['id_produits'] . '"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C17.5915 3 22.2898 6.82432 23.6219 12C22.2898 17.1757 17.5915 21 12 21C6.40848 21 1.71018 17.1757 0.378052 12C1.71018 6.82432 6.40848 3 12 3ZM12 19C7.52443 19 3.73132 16.0581 2.45723 12C3.73132 7.94186 7.52443 5 12 5C16.4756 5 20.2687 7.94186 21.5428 12C20.2687 16.0581 16.4756 19 12 19Z" fill="currentColor" /></svg></a>
+    <a class="actions_edit" href="edit.php?id=' . $rowProduits['id_produits'] . '"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12C8 13.1046 7.10457 14 6 14C4.89543 14 4 13.1046 4 12C4 10.8954 4.89543 10 6 10C7.10457 10 8 10.8954 8 12Z" fill="currentColor" /><path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z" fill="currentColor" /></svg></a>
+    <a class="actions_delete" href="delete.php?id=' . $rowProduits['id_produits'] . '"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z" fill="currentColor" /></svg></a>
+    </td>
+    </tr>';
 }
 
-echo '</div>';
-echo '</div>
+echo '</tbody>
+</table>
+</div>
 <div class="gestionMagasinBoard">
 <div class="navGestionMagasin">
             <ul>
@@ -116,9 +136,11 @@ echo '</div>
         </div>
         <hr class="separation_gestion_container">';
 
+// Début de la création de chaque onglet de la page Gestion du Magasin
 if (isset($_GET['options'])) {
     $contenuLink = $_GET['options'];
 
+    //Onglet par défaut Stats
     switch ($contenuLink) {
         default:
             $contenuLink = 'statistique';
@@ -132,8 +154,8 @@ if (isset($_GET['options'])) {
             <p>Vente Unité 24h</p>
             <div>';
 
+            //Utilisation de l'import de la table Stats de la BDD
             foreach ($AllStats as $rowStats) {
-
                 echo '<div class="line_stats">';
                 echo '<p>' . $rowStats['date'] . '</p>';
                 echo '<span>' . $rowStats['recette_24h'] . '</span>';
@@ -144,6 +166,8 @@ if (isset($_GET['options'])) {
             echo '</div>
             </div>';
             break;
+
+            //Onglet Ajouter un produit
         case 'ajouterproduit':
             $contenuContainer = '<div class="add_produit_container">
             <h5>Ajouter un produit :</h5>
@@ -186,16 +210,22 @@ if (isset($_GET['options'])) {
             </div>
             ';
             break;
+
+            //Onglet Stock de la Gestion du Magasin
         case 'stock':
             $contenuContainer = '<div class="button_container_stock"><button class="OpenFullScreenStock">Ouvrir le panneau de stock</button></div>';
             break;
+
+            //Onglet Démarchage de la Gestion du Magasin
         case 'demarchage':
             $contenuContainer = '5';
             break;
     }
 
     echo $contenuContainer;
-} else {
+}
+//Contenu si aucun onglet n'est sélectionner a l'arrivée sur la page
+else {
     $content = '
     <div>
     <p>Veuillez selectioner une option.</p>

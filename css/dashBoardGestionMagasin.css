@@ -152,139 +152,7 @@ main .gestionMagasinBoard .separation_gestion_container {
     display: none;
 }
 
-.containerStock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: scroll;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-.line_produit,
-.line_produit_1 {
-    display: flex;
-    align-items: center;
-    height: 35px;
-    width: 90%;
-    margin: 7px 0px;
-    padding: 8px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: height 400ms ease;
-}
-
-.line_produit_1 p,
-.line_produit p {
-    display: flex;
-    justify-content: flex-start;
-    margin: 0px 8px;
-}
-
-.line_produit_up_height {
-    height: 100px;
-}
-
-.line_produit:hover {
-    background-color: rgb(235, 235, 235);
-}
-
-.line_produit p {
-    font-size: 0.9em;
-}
-
-.ref_col,
-.ref_col_1 {
-    width: 120px;
-    height: 100%;
-    overflow: hidden;
-}
-
-.nom_col,
-.nom_col_1 {
-    width: 80px;
-    height: 100%;
-    overflow: hidden;
-}
-
-.description_col,
-.description_col_1 {
-    width: 360px;
-    height: 100%;
-    overflow: hidden;
-}
-
-.prix_col,
-.prix_col_1 {
-    width: 40px;
-    height: 100%;
-    overflow: hidden;
-}
-
-.categorie_col,
-.categorie_col_1 {
-    width: 80px;
-    height: 100%;
-    overflow: hidden;
-}
-
-.stock_col,
-.stock_col_1 {
-    width: 50px;
-    height: 100%;
-    overflow: hidden;
-}
-
-.right_modify,
-.right_modify_1 {
-    display: flex;
-    align-items: center;
-    width: 80px;
-}
-
-.line_produit .right_modify button {
-    width: 25px;
-    height: 25px;
-    margin: 0px 4px;
-    background-color: transparent;
-    border-radius: 0px;
-    border: 1px solid rgb(35, 35, 79);
-}
-
-
-#button_modify {
-    border: 1px solid blue;
-}
-
-#button_modify svg {
-    color: blue;
-    padding-right: 1px;
-}
-
-#button_delete {
-    border: 1px solid red;
-}
-
-#button_delete svg {
-    color: red;
-    padding-right: 1px;
-}
-
-.active_button_stock {
-    animation: Effect_button 300ms ease-in-out;
-}
-
-@keyframes Effect_button {
-    0% {
-        transform: scale(0.8);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* // CSS STOCK CONTAINR  */
+/* // CSS STOCK CONTAINER NON FULLSCREEN  */
 
 .stock_container {
     width: 100%;
@@ -300,4 +168,89 @@ main .gestionMagasinBoard .separation_gestion_container {
     width: fit-content;
     height: fit-content;
     padding: 15px;
+}
+
+/* // CSS FULL SCREEN STOCK CONTAINER */
+
+.containerStock {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.containerStock th {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+}
+
+.containerStock td {
+    padding: 10px;
+}
+
+.containerStock tbody tr {
+    border: none;
+    border-bottom: 0.5px solid black;
+}
+
+.containerStock tbody tr td {
+    border: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.containerStock .id_col {
+    width: 4%;
+}
+
+.containerStock .reference_col {
+    width: 20%;
+}
+
+.containerStock .nom_col {
+    width: 12%;
+}
+
+.containerStock .description_col {
+    width: 26%;
+}
+
+.containerStock .prix_col {
+    width: 8%;
+}
+
+.containerStock .categorie_col {
+    width: 12%;
+}
+
+.containerStock .stock_col {
+    width: 8%;
+}
+
+.containerStock .actions_col {
+    width: 17%;
+}
+
+.actions_case {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerStock tbody td a {
+    margin: 0px 5px;
+}
+
+.actions_details {
+    color: blue;
+}
+
+.actions_edit {
+    color: gray;
+}
+
+.actions_delete {
+    color: red;
 }
