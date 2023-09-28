@@ -1,10 +1,15 @@
-<?php
-
-
- echo '<main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<main>
  <div class="dashBoard_admin">
    <div class="col_1">
-     <div class="graphique"></div>
+     <div class="graphique"><?php include 'graphique.php'; ?></div>
        <div class="vente">
          <h3 class="dernieresVentes">Dernières ventes</h3>
          <div class="separation"></div>
@@ -33,9 +38,17 @@
        </div>
    </div>
  </div>
-</main>';
+</main>
+</body>
+</html>
 
-?>
+
+
+
+
+
+
+
 
 
 
