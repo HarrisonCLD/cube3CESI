@@ -9,8 +9,9 @@ if ($_SESSION['user'] == true) {
     echo '<li><a href="../pages/dashBoardUser.php">Accueil</a></li>';
 } else if ($_SESSION['admin'] == true) {
     echo '<li><a href="../pages/dashBoardAdmin.php">Accueil</a></li>
+    <li><a href="../pages/mailInterne.php">Mail</a></li>
                 <li><a href="../pages/gestionMagasin.php">Gestion du magasin</a></li>
-                      <li>Gestion Ressources humaines</li>';
+                      <li>Gestion R.H</li>';
 }
 echo '</ul>
         </div>

@@ -1,0 +1,78 @@
+/* // ALL CONTENT CSS EDIT PAGE */
+main .edit_container {
+    flex-direction: inherit;
+
+}
+
+main .card_right_container,
+main .card_left_container {
+    width: 45%;
+}
+
+.identite_produit,
+.stock_produit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 7px 0px;
+    padding: 0px 10px;
+}
+
+.identite_produit p {
+    font-size: 0.9em;
+}
+
+/* // LEFT CONTAINER CSS  */
+main .card_left_container h3 {
+    font-size: 1.7em;
+    margin: 10px;
+}
+
+main .card_left_container p {
+    margin: 7px 0px;
+    font-size: 1.1em;
+
+}
+
+main .card_left_container .reference_edit_produit {
+    font-style: italic;
+}
+
+main .card_left_container .categorie_edit_produit {
+    text-align: right;
+}
+
+/* // RIGHT CONTAINER CSS */
+
+main .card_right_container {
+    align-items: center;
+}
+
+main .card_right_container div {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 13px;
+}
+
+main .card_right_container p {
+    width: 80%;
+}
+
+main .card_right_container div svg {
+    color: red;
+    margin: 0px 10px;
+}
+
+main .card_right_container input {
+    width: 90%;
+    margin: 7px 0px;
+    padding: 7px;
+    border-radius: 5px;
+    border: 0.5px solid black;
+}
+
+main .card_right_container button {
+    padding: 10px;
+    width: auto;
+}

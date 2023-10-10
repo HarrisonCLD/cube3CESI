@@ -42,16 +42,6 @@ try {
 
         $stmtAddProduit->execute();
     }
-
-    // //Requête pour delete produits du stock
-    // if (isset($_GET['delete'])) {
-
-    //     $sqlDeleteStock = "DELETE FROM produits WHERE id_produits = :id";
-
-    //     $stmtDeleteStock = $pdo->prepare($sqlDeleteStock);
-    //     $stmtDeleteStock->bindParam(':id', $idToDelete, PDO::PARAM_INT);
-    //     $stmtDeleteStock->execute();
-    // }
 }
 //Catch si il y a une erreur avec la BDD
 catch (PDOException $e) {
@@ -113,7 +103,7 @@ foreach ($AllProduits as $rowProduits) {
     <td>' . $rowProduits['stock'] . '</td>
     <td class="actions_case">
     <a class="actions_details" href="details.php?id=' . $rowProduits['id_produits'] . '"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C17.5915 3 22.2898 6.82432 23.6219 12C22.2898 17.1757 17.5915 21 12 21C6.40848 21 1.71018 17.1757 0.378052 12C1.71018 6.82432 6.40848 3 12 3ZM12 19C7.52443 19 3.73132 16.0581 2.45723 12C3.73132 7.94186 7.52443 5 12 5C16.4756 5 20.2687 7.94186 21.5428 12C20.2687 16.0581 16.4756 19 12 19Z" fill="currentColor" /></svg></a>
-    <a class="actions_edit" href="edit.php?id=' . $rowProduits['id_produits'] . '"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12C8 13.1046 7.10457 14 6 14C4.89543 14 4 13.1046 4 12C4 10.8954 4.89543 10 6 10C7.10457 10 8 10.8954 8 12Z" fill="currentColor" /><path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z" fill="currentColor" /></svg></a>
+    <a class="actions_edit" href="editDashBoard.php?id=' . $rowProduits['id_produits'] . '"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 12C8 13.1046 7.10457 14 6 14C4.89543 14 4 13.1046 4 12C4 10.8954 4.89543 10 6 10C7.10457 10 8 10.8954 8 12Z" fill="currentColor" /><path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="currentColor" /><path d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z" fill="currentColor" /></svg></a>
     <a class="actions_delete" href="delete.php?id=' . $rowProduits['id_produits'] . '"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z" fill="currentColor" /></svg></a>
     </td>
     </tr>';
@@ -147,12 +137,12 @@ if (isset($_GET['options'])) {
             $contenuContainer = '<div class="stats_container">
             <h5>Statistiques :</h5>
             <hr class="separation_gestion_content">
-            <div class="gestion_stats_content">
-            <div class="line_stats_1">
+            <table class="gestion_stats_content">
+            <thead class="line_stats_1">
             <p>Date</p>
             <p>Recette 24h (€)</p>
             <p>Vente Unité 24h</p>
-            <div>';
+            <thead>';
 
             //Utilisation de l'import de la table Stats de la BDD
             foreach ($AllStats as $rowStats) {
@@ -163,7 +153,7 @@ if (isset($_GET['options'])) {
                 echo '</div>';
             }
 
-            echo '</div>
+            echo '</table>
             </div>';
             break;
 

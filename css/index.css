@@ -1,3 +1,6 @@
+/* // IMPORT VARIABLE CSS */
+@import "_variables.css";
+
 /* // IMPORT COMPOSANT CSS */
 
 @import "navBarV2.css";
@@ -7,6 +10,8 @@
 @import "frontDashBoard.css";
 @import "options.css";
 @import "dashBoardGestionMagasin.css";
+@import "editDashBoard.css";
+@import "mailInterne.css";
 
 /* // */
 
@@ -27,7 +32,9 @@ body {
 
 main {
     width: 100vw;
+    max-width: 1300px;
     height: 100vh;
+    margin: 0px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,7 +87,9 @@ button {
 .dashBoard_admin,
 .dashBoard_user,
 .options_user,
-.gestionMagasinBoard {
+.gestionMagasinBoard,
+.edit_container,
+.mail_container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -95,7 +104,9 @@ button {
 .heure_container,
 .options_container,
 .navGestionMagasin,
-.contentGestionMagasin {
+.contentGestionMagasin,
+.card_left_container,
+.card_right_container {
     display: flex;
     flex-direction: column;
     height: 100%;
