@@ -11,7 +11,12 @@
   <main>
     <div class="dashBoard_admin">
       <div class="col_1">
-        <div class="graphique"><?php include 'graphique.php'; ?></div>
+        <div class="graphique">
+          <h3 class="titre_graphique">Evolution des ventes</h3>
+          <div class="separation"></div>
+        <div class="forme-graphique"><?php include 'graphique.php'; ?></div>
+          </div>
+        
         <div class="vente">
           <h3 class="dernieresVentes">Dernières ventes</h3>
           <div class="separation"></div>
@@ -34,8 +39,6 @@
             <p>Numéro de téléphone</p>
             <p>E-mail :</p>
             <p>Type, admin ou employés</p>
-            <p>Adresse ?</p>
-            <p>Pays</p>
           </div>
         </div>
       </div>

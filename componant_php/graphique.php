@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <svg width="400" height="200">
+    <svg width="220" height="170">
         <?php
         // Code PHP pour récupérer les données de la base de données
         require_once('../backend/config.php');
