@@ -157,3 +157,9 @@ ContentOptionsOff.addEventListener('click', () => {
     SVGProfil.classList.toggle('active_profil_effect');
     ContentOptionsOn.classList.toggle('active_options');
 })
+
+// document.addEventListener('click', () => {
+//     if (ContentOptionsOn.classList.contains('active_options')){
+//         ContentOptionsOn.classList.toggle('active_options')
+//     }
+// })

@@ -93,10 +93,10 @@ nav a {
     align-items: center;
     justify-content: center;
     padding: 15px;
-    background-color: white;
+    background-color: var(--background-container);
     border-radius: 10px;
     opacity: 0;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: var(--box-shadow);
     transform: translateX(150px);
     transition: opacity 500ms ease-in-out, transform 400ms ease-in-out;
 }
@@ -122,14 +122,14 @@ nav .profil_options_content a {
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
-    color: rgb(35, 35, 79);
+    color: var(--main-color);
 }
 
 nav .profil_options_content a:hover {
-    background-color: #e8e8E8;
+    background-color: var(--color-bg-hover);
 }
 
 nav .profil_options_content a svg {
     margin-left: 10px;
-    color: rgb(35, 35, 79);
+    color: var(--main-color);
 }

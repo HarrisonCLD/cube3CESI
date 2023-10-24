@@ -1,8 +1,5 @@
 .login_container {
     display: flex;
-}
-
-.login_container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -17,21 +14,6 @@
     display: flex;
     flex-direction: column;
     margin: 13px 0px;
-}
-
-.login_container label {
-    font-size: 1.1em;
-    margin-bottom: 8px;
-}
-
-.login_container input,
-.username_container input,
-.password_container input {
-    height: 30px;
-    width: 200px;
-    padding: 15px;
-    border-radius: 5px;
-    border: 0.5px solid black;
 }
 
 .login_container button {

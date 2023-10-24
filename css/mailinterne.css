@@ -16,25 +16,28 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 25px;
+    padding: 5px;
 }
 
 .ContainerFullScreen .Container1MailFull, .ContainerFullScreen .Container2MailFull, .ContainerFullScreen .Container3MailFull {
     display: flex;
-    width: 100%;
-    margin: 10px 0px;
+    width: 100%;    
+    margin: 8px 0px;
 }
 
 .ContainerFullScreen .Container1MailFull .adresse_send, .ContainerFullScreen .Container2MailFull .object_send, .ContainerFullScreen .Container3MailFull .contenu_send {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
+    width: fit-content;
+    min-width: 60px;
 }
 
-.ContainerFullScreen .Container1MailFull .input_for_adresse, .ContainerFullScreen .Container2MailFull .input_for_object_send, .ContainerFullScreen .Container3MailFull .input_for_contenu_mail {
-    width: 90%;
-    padding: 5px;
+.ContainerFullScreen .Container1MailFull .input_for_adresse, .ContainerFullScreen .Container2MailFull .input_for_object_send, .ContainerFullScreen .Container3MailFull .textarea_for_contenu_mail {
+    width: 100%;
+    padding: 3px;
+    border-radius: 5px;
+    border: 0.5px solid black;
 }
 
 .ContainerFullScreen .Container3MailFull {
@@ -42,8 +45,30 @@
     flex-direction: column;
 }
 
+.ContainerFullScreen .Container1MailFull .adresse_send, .ContainerFullScreen .Container2MailFull .object_send {
+    width: fit-content;
+    padding: 10px 5px;
+    margin-right: 10px;
+    border: 0.5px solid black;
+    background-color: lightgray;
+    border-radius: 2px;
+}
 
-/* // */
+.ContainerFullScreen .Container3MailFull .contenu_send {
+    width: fit-content !important;
+    margin-bottom: 10px;
+}
+
+.ContainerFullScreen .Container3MailFull .textarea_for_contenu_mail {
+    min-height: 400px;
+    padding: 5px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+}
+
+
+/* CSS Pour le reste de la page de création de mail */
 
 main .mail_container {
     height: 80%;
@@ -122,4 +147,9 @@ main .mail_container {
 
 .mailStyle .date_mail {
     width: 13%;
+}
+
+.write_mail_container label {
+    height: 30px;
+    width: 10% !important;
 }

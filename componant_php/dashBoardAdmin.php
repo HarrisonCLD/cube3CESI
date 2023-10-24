@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <title>ERP CESI - Interface Administrateur</title>
+
 </head>
 
 <body>
@@ -14,21 +16,21 @@
         <div class="graphique"><?php include 'graphique.php'; ?></div>
         <div class="vente">
           <h3 class="dernieresVentes">Dernières ventes</h3>
-          <div class="separation"></div>
+          <div class="separation_bar"></div>
           <p>Lorem ipsum dolor sit amet,<br>consectetur adipiscing elit,<br>sed eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
       </div>
       <div class="col_2">
         <div class="commentaire">
           <h3 class="clients">Derniers commentaires des clients</h3>
-          <div class="separation"></div>
+          <div class="separation_bar"></div>
           <div class="derniers">
             <p>Lorem ipsum dolor sit amet,<br>consectetur adipiscing elit,<br>sed eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
         </div>
         <div class="compte">
           <h3>Information du compte</h3>
-          <div class="separation"></div>
+          <div class="separation_bar"></div>
           <div class="description">
             <p>Nom du compte</p>
             <p>Numéro de téléphone</p>

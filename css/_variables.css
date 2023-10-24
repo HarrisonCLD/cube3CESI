@@ -1,5 +1,9 @@
 :root {
-    --main-color: rgb(35, 35, 79);
+    --main-color: rgb(55, 55, 125);
+    --darken-main-color : rgb(33, 33, 72);
     --color-text: black;
+    --color-bg-hover:rgb(243, 243, 243);
     --background-container: white;
+    --background-page: #e8e8e8;
+    --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;;
 }

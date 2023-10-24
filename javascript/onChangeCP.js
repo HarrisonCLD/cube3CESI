@@ -1,4 +1,3 @@
-
 function CalculDifferenceJour() {
     const inputOnChange1 = document.querySelector('.onChange1').value;
     const inputOnChange2 = document.querySelector('.onChange2').value;

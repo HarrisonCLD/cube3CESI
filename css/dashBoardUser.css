@@ -56,15 +56,6 @@ svg {
     width: 48%;
 }
 
-
-.separation_bar {
-    width: 100%;
-    height: 1px;
-    margin: 10px 0px;
-    border-radius: 5px;
-    background-color: black;
-}
-
 .annonce_top_content,
 .top_content_planning,
 .top_content_cp,
@@ -86,12 +77,19 @@ svg {
 
 /* // ANNONCES CONTENT CSS */
 
+.annonce_content {
+    overflow-y: scroll;
+}
+
 .annonce_content ul {
     width: 100%;
     padding: 10px;
     margin: 10px auto;
-    /* border-radius: 10px; */
-    border-bottom: 0.5px solid black;
+    border-radius: 10px;
+}
+
+.annonce_content ul:hover {
+    background-color: var(--color-bg-hover);
 }
 
 .annonce_content ul li {
@@ -117,7 +115,7 @@ svg {
     margin: 0;
     padding: 25px;
     z-index: 9998;
-    background-color: #e8e8e8;
+    background-color: var(--background-container);
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }

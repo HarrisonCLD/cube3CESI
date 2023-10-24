@@ -25,20 +25,22 @@ const lineProduct = document.querySelectorAll('.line_produit');
 
 const tab_line_product = Array.from(lineProduct);
 
-// for (let i = 0; i < tab_line_product.length; i++) {
-//     tab_line_product[i].addEventListener('click', () => {
-//         tab_line_product[i].classList.toggle('line_produit_up_height');
-//     })
-// }
-
 //GESTION APPENCHILD BUG FOREACH PHP
 
 const MainBoardMagasin = document.querySelector('.gestionMagasinBoard')
 const StatsContainer = document.querySelector('.stats_container')
+const BodyTabStats = document.querySelector('.tbody_stats')
 const lineStats = document.querySelectorAll('.line_stats')
 const tab_line_stats = Array.from(lineStats)
+
+console.log(BodyTabStats)
+console.log(lineStats)
 
 MainBoardMagasin.appendChild(StatsContainer)
 for (let k = 0; k < tab_line_stats.length; k++) {
     StatsContainer.appendChild(tab_line_stats[k])
+}
+
+for (let j = 0; j < lineStats.length; j++) {
+    BodyTabStats.appendChild(lineStats[j])
 }

@@ -12,6 +12,7 @@
 @import "dashBoardGestionMagasin.css";
 @import "editDashBoard.css";
 @import "mailInterne.css";
+@import "gestion_des_droits.css";
 
 /* // */
 
@@ -26,7 +27,7 @@ html {
 }
 
 body {
-    background-color: #e8e8E8;
+    background-color: var(--background-page);
     overflow: hidden;
 }
 
@@ -41,12 +42,7 @@ main {
 }
 
 h3 {
-    color: rgb(35, 35, 79);
-}
-
-h5 {
-    color: rgb(35, 35, 79);
-    font-size: 1.1em;
+    color: var(--main-color);
 }
 
 li {
@@ -55,6 +51,7 @@ li {
 
 a {
     text-decoration: none;
+    color: var(--main-color);
 }
 
 button {
@@ -64,9 +61,32 @@ button {
     margin-top: 10px;
     border-radius: 10px;
     color: white;
-    background-color: rgb(42, 42, 93);
-    border: 0.5px solid rgb(42, 42, 93);
+    background-color: var(--main-color);
+    border: 0.5px solid var(--main-color);
     cursor: pointer;
+    transition: background-color 150ms ease-in-out, border 150ms ease-in-out;
+}
+
+button:hover {
+    background-color: var(--darken-main-color);
+    border: 0.5px solid var(--darken-main-color);
+}
+
+label {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+input {
+    height: 30px;
+    width: 200px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 0.5px solid black;
+    }
+
+    input:focus {
+    outline: 1px solid var(--main-color);
 }
 
 .alert_container {
@@ -76,10 +96,10 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: var(--background-container);
     text-align: center;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    box-shadow: var(--box-shadow);
 }
 
 /* MAIN CONTAINER ALL PAGE */
@@ -106,93 +126,26 @@ button {
 .navGestionMagasin,
 .contentGestionMagasin,
 .card_left_container,
-.card_right_container {
+.card_right_container, 
+.graphique, 
+.commentaire, 
+.vente, 
+.compte,
+.gestion_droit_container {
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 20px 15px;
     margin: 10px 0px;
     border-radius: 10px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: var(--background-container);
+    box-shadow: var(--box-shadow);
 }
 
-/* //OVERLAY DARK THEME CSS */
-
-.overlay_1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
+.separation_bar {
     width: 100%;
-    z-index: 1;
-    background-color: black;
-}
-
-.overlay_2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 3;
-    border-radius: 10px;
-    background-color: rgb(22, 24, 28);
-}
-
-/* //Dark Theme CSS */
-
-.dark_theme_for_body {
-    position: relative;
-    z-index: 0;
-}
-
-.dark_theme_for_container {
-    position: relative;
-    z-index: 4;
-    border: 0.5px solid rgb(47, 51, 54);
-}
-
-.dark_theme_for_content {
-    color: #e8e8E8;
-    position: relative;
-    z-index: 6;
-}
-
-.dark_theme_for_separation {
-    background-color: #e8e8E8;
-    position: relative;
-    z-index: 6;
-}
-
-.dark_theme_for_annonce_ul_1 {
-    background-color: #e8e8E8;
-}
-
-.dark_theme_for_annonce_ul_2 {
-    border: #e8e8E8;
-    background-color: transparent;
-}
-
-.dark_theme_for_annonce_li {
-    color: black;
-}
-
-.dark_theme_for_th_and_td {
-    color: white;
-}
-
-.dark_theme_for_input {
-    background-color: rgb(170, 170, 170);
-}
-
-.dark_theme_for_profil_a {
-    z-index: 16;
-    color: white;
-}
-
-.dark_theme_for_profil_container {
-    position: absolute;
-    z-index: 15;
+    height: 1px;
+    margin: 10px 0px;
+    border-radius: 5px;
     background-color: black;
 }

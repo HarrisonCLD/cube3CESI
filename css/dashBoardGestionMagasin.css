@@ -4,8 +4,8 @@ main .gestionMagasinBoard {
     justify-content: normal;
     max-width: 90%;
     max-height: 80%;
-    background-color: white;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: var(--background-container);
+    box-shadow: var(--box-shadow);
 }
 
 main .navGestionMagasin,
@@ -44,8 +44,8 @@ main .gestionMagasinBoard .separation_gestion_container {
 }
 
 .navGestionMagasin li:hover {
-    color: blue;
-    background-color: rgb(243, 243, 243);
+    color: var(--main-color);
+    background-color: var(--color-bg-hover);
 }
 
 .separation_nav_gestion {
@@ -94,14 +94,6 @@ main .gestionMagasinBoard .separation_gestion_container {
     margin-top: 10px;
 }
 
-.top_add input {
-    min-width: 200px;
-    margin: 10px 0px;
-    padding: 6px;
-    border-radius: 5px;
-    border: 0.5px solid black;
-}
-
 .reference_container,
 .nom_container,
 .description_container,
@@ -110,6 +102,7 @@ main .gestionMagasinBoard .separation_gestion_container {
 .stock_container {
     display: flex;
     flex-direction: column;
+    margin: 10px;
 }
 
 /* // CSS STOCK PRODUIT CONTAINER  */
@@ -120,12 +113,13 @@ main .gestionMagasinBoard .separation_gestion_container {
     align-items: center;
     flex-direction: column;
     width: 90%;
+    max-width: 1300px;
     height: 90%;
     padding: 20px;
     z-index: 9990;
     background-color: white;
     border-radius: 10px;
-    border: 1px solid black;
+    box-shadow: var(--box-shadow);
 }
 
 .top_stock_search {
@@ -202,7 +196,7 @@ main .gestionMagasinBoard .separation_gestion_container {
 }
 
 .containerStock .id_col {
-    width: 4%;
+    width: 7%;
 }
 
 .containerStock .reference_col {
@@ -214,7 +208,7 @@ main .gestionMagasinBoard .separation_gestion_container {
 }
 
 .containerStock .description_col {
-    width: 26%;
+    width: 24%;
 }
 
 .containerStock .prix_col {
@@ -230,7 +224,7 @@ main .gestionMagasinBoard .separation_gestion_container {
 }
 
 .containerStock .actions_col {
-    width: 17%;
+    width: 16%;
 }
 
 .actions_case {

@@ -14,7 +14,7 @@ session_start();
 
     <link rel="stylesheet" href="../css/index.css">
 
-    <title>CRM CESI - Utilisateur</title>
+    <title>ERP CESI - Détails</title>
 
 </head>
 
@@ -22,7 +22,7 @@ session_start();
 
     <?php
     if (!isset($_SESSION['admin']) || !isset($_SESSION['user'])) {
-        header('Location: ../index.php');
+        header('Location: ../login.php');
         exit();
     } else if (isset($_SESSION['id_utilisateur'])) {
 
@@ -30,12 +30,10 @@ session_start();
         $iUser = $_SESSION['id_utilisateur'];
 
         include '../componant_php/navBarV2.php';
-        include '../componant_php/dashBoardUser.php';
     }
     ?>
-    <script src="../javascript/dashBoardUser.js"></script>
+
     <script src="../javascript/navBar.js"></script>
-    <script src="../javascript/onChangeCP.js"></script>
 
 </body>
 

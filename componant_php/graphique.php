@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,13 @@
         }
     </style>
 </head>
+
 <body>
     <svg width="400" height="200">
         <?php
         // Code PHP pour récupérer les données de la base de données
         require_once('../backend/config.php');
-        
+
         try {
             $pdo = new PDO("mysql:localhost=$db_host;dbname=$db_name", $db_user, $db_password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -38,14 +40,12 @@
 
                 echo "<rect class='bar' x='$x' y='" . (200 - $nb_vente) . "' width='$barWidth' height='$nb_vente'></rect>";
                 $x += $barWidth + $spacing;
-            
+            }
+        } catch (PDOException $e) {
+            // echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
         }
-     } catch (PDOException $e) {
-            echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
-        }
-
-    
         ?>
     </svg>
 </body>
+
 </html>
