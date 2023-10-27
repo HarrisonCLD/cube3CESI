@@ -25,6 +25,9 @@
     // Requête SQL Formulaire d'inscription
     if (isset($_POST['SubmitFormInscription'])) {
         try {
+            //Try connexion PDO
+            $pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             //Banque variable formulaire
             $numeroDeBadge = strip_tags($_POST['numeroDeBadge']);

@@ -41,7 +41,7 @@ $_SESSION['user'] = false;
                 $nomDeCompte = strip_tags($_POST['nomDeCompte']);
                 $motDePasse = strip_tags($_POST['motDePasse']);
 
-                $sql = 'SELECT id_utilisateur, nomDeCompte, motDePasse, statut FROM utilisateur WHERE nomDeCompte = :nomDeCompte';
+                $sql = 'SELECT id_utilisateur, nomDeCompte, motDePasse, privilege FROM utilisateur WHERE nomDeCompte = :nomDeCompte';
 
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':nomDeCompte', $nomDeCompte, PDO::PARAM_STR);
@@ -52,12 +52,12 @@ $_SESSION['user'] = false;
                 $idUserBDD = $row['id_utilisateur'];
                 $nomDeCompteBDD = $row['nomDeCompte'];
                 $motDePasseBDD = $row['motDePasse'];
-                $statutBDD = $row['statut'];
+                $statutBDD = $row['privilege'];
 
                 //Logique de connexion
                 if (isset($nomDeCompteBDD)) {
                     if ($nomDeCompteBDD == $nomDeCompte && password_verify($motDePasse, $motDePasseBDD)) {
-                        if ($statutBDD == 'admin') {
+                        if ($statutBDD == '1') {
                             $_SESSION['id_utilisateur'] = $idUserBDD;
                             $_SESSION['admin'] = true;
                             header('Location: pages/dashboard_admin.php');

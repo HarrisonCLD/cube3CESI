@@ -32,7 +32,7 @@ session_start();
     } else if (isset($_SESSION['id_utilisateur'])) {
 
         $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
-        $iUser = $_SESSION['id_utilisateur'];
+        $idUser = $_SESSION['id_utilisateur'];
     }
 
     try {
@@ -40,7 +40,7 @@ session_start();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Requête SQL pour le contenu du container Annonces :
-        $sqlAnnonces = "SELECT titre, categorie, contenu, auteur FROM annonces";
+        $sqlAnnonces = "SELECT titre, categorie_mail, contenu, auteur FROM annonces";
         $stmtAnnonces = $pdo->prepare($sqlAnnonces);
         $stmtAnnonces->execute();
         $annonces = $stmtAnnonces->fetchAll(PDO::FETCH_ASSOC);
@@ -64,7 +64,8 @@ session_start();
             $stmtCP->execute();
         }
     } catch (PDOException $e) {
-        echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+        // echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+        echo $e;
     }
     ?>
 
@@ -89,11 +90,39 @@ session_start();
                         <?php
                         //ForEach pour afficher toutes les annonces du container :
                         foreach ($annonces as $rowAnnonces) {
+
+                            // Switch chaine de caractère en chiffre pour l'auteur :
+                            // Système à re travailler.
+                            $AuteurMail = $rowAnnonces['auteur'];
+
+                            if ($AuteurMail == 1) {
+                                $AuteurMail = 'Directeur';
+                            } else {
+                                $AuteurMail = 'Utilisateur';
+                            }
+
+                            // Switch chaine de caractère en chiffre pour la categorie :
+                            // Système à re travailler.
+                            $CategorieMail = $rowAnnonces['categorie_mail'];
+
+                            if ($CategorieMail == 1) {
+                                $CategorieMail = 'Annonce';
+                            } else if ($CategorieMail == 2) {
+                                $CategorieMail = 'Nouvelle';
+                            } else if ($CategorieMail == 3) {
+                                $CategorieMail = 'Logistique';
+                            } else if ($CategorieMail == 4) {
+                                $CategorieMail = 'Administratif';
+                            } else if ($CategorieMail == 5) {
+                                $CategorieMail = 'Problème';
+                            } else if ($CategorieMail == 6) {
+                                $CategorieMail = 'Ressource humaine';
+                            }
                             echo '<ul>';
                             echo "<li><h4 class='title_small'>" . $rowAnnonces["titre"] . "</h4></li>";
-                            echo "<li><p class='categorie_small'>" . $rowAnnonces["categorie"] . "</p></li>";
+                            echo "<li><p class='categorie_small'>Catégorie : " . $CategorieMail . "</p></li>";
                             echo "<li><p class='contenu_small'>" . $rowAnnonces["contenu"] . "</p></li>";
-                            echo "<li><p class='auteur_small'>" . $rowAnnonces["auteur"] . "</p></li>";
+                            echo "<li><p class='auteur_small'>Auteur : " . $AuteurMail . "</p></li>";
                             echo '</ul>';
                         }
                         ?>

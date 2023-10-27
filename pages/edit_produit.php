@@ -32,7 +32,7 @@ session_start();
     } else if (isset($_SESSION['id_utilisateur'])) {
 
         $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
-        $iUser = $_SESSION['id_utilisateur'];
+        $idUser = $_SESSION['id_utilisateur'];
     }
 
     try {
@@ -102,7 +102,6 @@ session_start();
 
             // Vérifiez s'il y a des mises à jour à effectuer
             if (!empty($updates)) {
-                var_dump($updates);
                 $sqlEdit .= implode(", ", $updates);
                 $sqlEdit .= " WHERE id_produits = '$idEdit'";
 

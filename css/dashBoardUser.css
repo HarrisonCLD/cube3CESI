@@ -1,135 +1,150 @@
 .dashBoard_user {
-    height: 80%;
+  height: 80%;
 }
 
 svg {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .active {
-    animation: full_screen_effect 300ms ease forwards;
+  animation: full_screen_effect 300ms ease forwards;
 }
 
 @keyframes full_screen_effect {
-    0% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
 
-    50% {
-        transform: scale(1.1);
-    }
+  50% {
+    transform: scale(1.1);
+  }
 
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .active_button {
-    animation: button_effect 300ms ease forwards;
+  animation: button_effect 300ms ease forwards;
 }
 
 @keyframes button_effect {
-    0% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
 
-    50% {
-        transform: scale(1.02);
-    }
+  50% {
+    transform: scale(1.02);
+  }
 
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .top_dashBoard_user,
 .bottom_dashBoard_user {
-    display: flex;
-    justify-content: space-around;
-    height: 48%;
+  display: flex;
+  justify-content: space-around;
+  height: 48%;
 }
 
 .annonce_container,
 .planning_container,
 .cp_container,
 .heure_container {
-    width: 48%;
+  width: 48%;
 }
 
 .annonce_top_content,
 .top_content_planning,
 .top_content_cp,
 .top_heure_content {
-    display: flex;
-    justify-content: space-between;
-    z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
 }
 
 .annonce_content,
 .planning_content,
 .cp_content,
 .heure_content {
-    height: 80%;
-    padding: 5px;
-    border-radius: 10px;
-    z-index: 10;
+  height: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  z-index: 10;
 }
 
 /* // ANNONCES CONTENT CSS */
 
 .annonce_content {
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 .annonce_content ul {
-    width: 100%;
-    padding: 10px;
-    margin: 10px auto;
-    border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 10px;
 }
 
 .annonce_content ul:hover {
-    background-color: var(--color-bg-hover);
+  background-color: var(--color-bg-hover);
 }
 
 .annonce_content ul li {
-    list-style: none;
-    cursor: pointer;
+  list-style: none;
+  cursor: pointer;
 }
 
 .categorie_small,
 .contenu_small,
 .auteur_small {
-    display: none;
+  display: none;
 }
 
 /* LI EFFECT FULL SCREEN */
 
 .full_screen_container {
-    position: absolute;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    height: 90%;
-    width: 90%;
-    margin: 0;
-    padding: 25px;
-    z-index: 9998;
-    background-color: var(--background-container);
-    border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 90%;
+  margin: 0;
+  padding: 25px;
+  z-index: 9998;
+  background-color: var(--background-container);
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .closeButton {
-    position: absolute;
-    z-index: 9999;
-    top: 15px;
-    right: 15px;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    background-color: red;
-    cursor: pointer;
+  position: absolute;
+  z-index: 9999;
+  top: 15px;
+  right: 15px;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: red;
+  cursor: pointer;
+}
+.full_screen_container .title_small {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: var(--main-color);
+}
+.full_screen_container .categorie_small,
+.full_screen_container .auteur_small {
+  font-size: 1.1em;
+  font-weight: lighter;
+}
+.full_screen_container .contenu_small {
+  font-size: 1.1em;
+  margin: 20px;
 }
 
 /* // CSS PLANNING USER */
@@ -137,100 +152,100 @@ svg {
 /* Journée container */
 
 .planning_content {
-    width: 100%;
-    overflow: auto;
+  width: 100%;
+  overflow: auto;
 }
 
 .fullscreen_table {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .planning_content table th {
-    margin: 0px 5px;
+  margin: 0px 5px;
 }
 
 .planning_content table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th,
 td {
-    border: 1px solid #ccc;
-    padding: 1px 5px;
+  border: 1px solid #ccc;
+  padding: 1px 5px;
 }
 
 .heure_container_planning {
-    text-align: end;
+  text-align: end;
 }
 
 /* // CP CONTAINER */
 
 .cp_container {
-    align-items: center;
+  align-items: center;
 }
 
 .top_content_cp {
-    width: 100%;
+  width: 100%;
 }
 
 .cp_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 
 .cp_content .heures_enter_form {
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .cp_content span {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .cp_content div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .cp_content div input {
-    width: 120px;
-    padding: 5px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: 0.5px solid black;
+  width: 120px;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 0.5px solid black;
 }
 
 /* // HEURE CONTAINER */
 
 .heure_content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .compteur_container p {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .compteur_container p::after,
 .cp_content div p::after {
-    content: "";
-    display: block;
-    height: 1px;
-    width: 95%;
-    margin-top: 2px;
-    background-color: black;
+  content: "";
+  display: block;
+  height: 1px;
+  width: 95%;
+  margin-top: 2px;
+  background-color: black;
 }
 
 .occuped {
-    background-color: red;
+  background-color: red;
 }

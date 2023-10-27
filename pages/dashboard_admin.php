@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -30,7 +29,7 @@ session_start();
     } else if (isset($_SESSION['id_utilisateur'])) {
 
         $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
-        $iUser = $_SESSION['id_utilisateur'];
+        $idUser = $_SESSION['id_utilisateur'];
 
         include '../componant_php/navBarV2.php';
         include '../componant_php/dashBoardAdmin.php';

@@ -32,7 +32,7 @@ session_start();
     } else if (isset($_SESSION['id_utilisateur'])) {
 
         $StatutUser = $_SESSION['admin'] ? 'admin' : 'user';
-        $iUser = $_SESSION['id_utilisateur'];
+        $idUser = $_SESSION['id_utilisateur'];
     }
 
     try {
@@ -170,7 +170,7 @@ session_start();
                 //Onglet par défaut Stats :
                 switch ($contenuLink) {
                     default:
-                        $contenuLink = 'statistique';
+                        // $contenuLink = 'statistique';
                         $contenuContainer = '<div class="stats_container">
                                 <h3>Statistiques :</h3>
                                 <hr class="separation_gestion_content">

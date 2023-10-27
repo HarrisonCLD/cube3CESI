@@ -45,18 +45,70 @@ session_start();
         $stmtSelectMailSend->execute();
         $AllMailSend = $stmtSelectMailSend->fetchAll(PDO::FETCH_ASSOC);
 
-        //Requête envois de mail :
-        if (isset($_POST['SubmitForSendMail']) && !empty($AdresseMail) && !empty($ObjectMail) && !empty($ContenuMail)) {
-            $AdresseMail = strip_tags($_POST['SendMailAdresse']);
-            $ObjectMail = strip_tags($_POST['SendMailObject']);
-            $ContenuMail = strip_tags($_POST['SendMailContenu']);
+        // Requête SQL pour récupérer les auteurs de mail disponible :
+        $SQL_select_auteur = "SELECT * FROM poste_de_travail";
+        $STMT_select_auteur = $pdo->prepare($SQL_select_auteur);
+        $STMT_select_auteur->execute();
+        $RESULT_select_auteur = $STMT_select_auteur->fetchAll();
 
-            $sqlSendMail = "INSERT INTO mail";
-            $stmtSendMail = $pdo->prepare($sqlSendMail);
-            $stmtSendMail->execute();
+        // Requête SQL pour récupérer les categorie de mail disponible :
+        $SQL_select_categorie = "SELECT * FROM categorie_mail";
+        $STMT_select_categorie = $pdo->prepare($SQL_select_categorie);
+        $STMT_select_categorie->execute();
+        $RESULT_select_categorie = $STMT_select_categorie->fetchAll();
+
+        //Requête pour l'envoi d'annonce :
+        if (isset($_POST['SubmitForSendMail']) && !empty($_POST['SendMailTitre']) && !empty($_POST['SendMailAuteur']) && !empty($_POST['SendMailContenu']) && (!empty($_POST['SendMailCategorie']))) {
+
+            // Passage en strip_tags des données du formulaire :
+            $ST_TitreAnnonce = strip_tags($_POST['SendMailTitre']);
+            $ST_AuteurAnnonce = strip_tags($_POST['SendMailAuteur']);
+            $ST_ContenuAnnonce = strip_tags($_POST['SendMailContenu']);
+            $ST_CategorieAnnonce = strip_tags($_POST['SendMailCategorie']);
+
+            // Passage en HtmlSpecialChars des données du formulaire :
+            $HSC_TitreAnnonce = htmlspecialchars($ST_TitreAnnonce);
+            $HSC_AuteurAnnonce = htmlspecialchars($ST_AuteurAnnonce);
+            $HSC_ContenuAnnonce = htmlspecialchars($ST_ContenuAnnonce);
+            $HSC_CategorieAnnonce = htmlspecialchars($ST_CategorieAnnonce);
+
+            // Switch chaine de caractère en chiffre pour l'auteur :
+            // Système à re travailler.
+            if ($HSC_AuteurAnnonce == 'Directeur') {
+                $HSC_AuteurAnnonce = 1;
+            } else {
+                $HSC_AuteurAnnonce = 2;
+            }
+
+            // Switch chaine de caractère en chiffre pour la categorie :
+            // Système à re travailler.
+            if ($HSC_CategorieAnnonce == 'Annonce') {
+                $HSC_CategorieAnnonce = 1;
+            } else if ($HSC_CategorieAnnonce == 'Nouvelle') {
+                $HSC_CategorieAnnonce = 2;
+            } else if ($HSC_CategorieAnnonce == 'Logistique') {
+                $HSC_CategorieAnnonce = 3;
+            } else if ($HSC_CategorieAnnonce == 'Administratif') {
+                $HSC_CategorieAnnonce = 4;
+            } else if ($HSC_CategorieAnnonce == 'Problème') {
+                $HSC_CategorieAnnonce = 5;
+            } else if ($HSC_CategorieAnnonce == 'Ressource humaine') {
+                $HSC_CategorieAnnonce = 6;
+            }
+
+            $SQL_SendMail = "INSERT INTO annonces (titre, auteur, contenu, categorie_mail, date_mail) VALUES (:titre, :auteur, :contenu, :categorie, NOW())";
+            $STMT_SendMail = $pdo->prepare($SQL_SendMail);
+            $STMT_SendMail->bindParam(':titre', $HSC_TitreAnnonce, PDO::PARAM_STR);
+            $STMT_SendMail->bindParam(':auteur', $HSC_AuteurAnnonce, PDO::PARAM_INT);
+            $STMT_SendMail->bindParam(':contenu', $HSC_ContenuAnnonce, PDO::PARAM_STR);
+            $STMT_SendMail->bindParam(':categorie', $HSC_CategorieAnnonce, PDO::PARAM_INT);
+            $STMT_SendMail->execute();
+            header('Location: mail.php');
+            exit();
         }
     } catch (PDOException $e) { //Si erreur avec la requête a la BDD
-        echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+        // echo '<div class="alert_container">Erreur avec la base de donnée.</div>';
+        echo $e;
     }
     ?>
 
@@ -81,20 +133,68 @@ session_start();
                 <ul>
 
                     <?php
+
                     // ForEach de tout les mails de la BDD à afficher
                     foreach ($AllMailSend as $rowMailSend) {
+                        $MailAuteurSelect = $rowMailSend['auteur'];
+
+                        if ($MailAuteurSelect == 1) {
+                            $MailAuteurSelect = 'Directeur';
+                        } else {
+                            $MailAuteurSelect = 'Utilisateur';
+                        }
+
                         echo '<li class="mailStyle">
-                    <p class="titre_mail">' . $rowMailSend['titre'] . '</p>
-                    <p class="contenu_mail">' . $rowMailSend['contenu'] . '</p>
-                    <p class="auteur_mail">' . $rowMailSend['auteur'] . '</p>
-                    <p class="date_mail">' . $rowMailSend['date_mail'] . '</p>
-                    </li>';
+                        <p class="titre_mail">' . $rowMailSend['titre'] . '</p>
+                        <p class="contenu_mail">' . $rowMailSend['contenu'] . '</p>
+                        <p class="auteur_mail">' . $MailAuteurSelect . '</p>
+                        <p class="date_mail">' . $rowMailSend['date_mail'] . '</p>
+                        </li>';
                     }
+
                     ?>
 
                 </ul>
             </div>
         </div>
+
+        <div class="ContainerFullScreen">
+            <div class="closeButton"></div>
+            <form class="write_mail_container" method="POST">
+                <div class="Container1MailFull">
+                    <label class="adresse_send" for="SendMailTitre">Titre :</label>
+                    <input type="text" name="SendMailTitre" class="input_for_adresse">
+                </div>
+                <div class="Container2MailFull">
+                    <div>
+                        <label class="object_send" for="SendMailAuteur">Auteur :</label>
+                        <select name="SendMailAuteur">
+                            <?php
+                            foreach ($RESULT_select_auteur as $auteur) {
+                                echo '<option value="' . $auteur['Nom_poste_de_travail'] . '">' . $auteur['Nom_poste_de_travail'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="categorie_send" for="SendMailCategorie">Categorie :</label>
+                        <select name="SendMailCategorie">
+                            <?php
+                            foreach ($RESULT_select_categorie as $categorie) {
+                                echo '<option value="' . $categorie['Nom'] . '">' . $categorie['Nom'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="Container3MailFull">
+                    <label class="contenu_send" for="SendMailContenu">Contenu du mail :</label>
+                    <textarea class="textarea_for_contenu_mail" name="SendMailContenu"></textarea>
+                </div>
+                <button class="buttonForMailSend" type="submit" name="SubmitForSendMail">Envoyer</button>
+            </form>
+        </div>
+
     </main>
 
     <script src="../javascript/navBar.js"></script>

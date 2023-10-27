@@ -1,81 +1,88 @@
 .dashBoard_admin {
-    height: 80%;
+  height: 80%;
 }
 
-.graphique, 
+.graphique,
 .commentaire,
 .vente,
-.compte{
-    width: 48%;
+.compte {
+  width: 48%;
 }
 
 .col_1 {
-    display: flex;
-    justify-content: space-around;
-    height: 40%;
+  display: flex;
+  justify-content: space-around;
+  height: 40%;
 }
 
 .col_2 {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
-    height: 60%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  height: 60%;
 }
 
 .colonne_1,
 .colonne_2,
 .colonne_3 {
-    display: flex;
-    justify-content: space-around;
-    width: 33%;
-    border: 1px solid #000;
-    height: 20px;
+  display: flex;
+  justify-content: space-around;
+  width: 33%;
+  border: 1px solid #000;
+  height: 20px;
 }
 
 .commentaire,
 .derniers {
-    display: block;
+  display: block;
 }
 
 .derniers {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .mail,
 .boite {
-    display: block;
+  display: block;
 }
 
 .derniersMails {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .vente,
 .graphique {
-    display: block;
+  display: block;
+}
+
+.titre_graphique {
+  display: flex;
+}
+
+.bar {
+  fill: blue;
 }
 
 .compte,
 .description {
-    display: block;
+  display: block;
 }
 
 .infos_compte {
-    display: flex;
-    justify-content: center;
-    border-top-right-radius: 30px;
-    border-top-left-radius: 30px;
+  display: flex;
+  justify-content: center;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
 }
 
 .description {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-
 .description p {
-    margin: 10px 0px;
+  margin: 10px 0px;
 }
